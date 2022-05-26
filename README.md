@@ -57,3 +57,9 @@ Grouping algorithm that would take in data from users and create groups of peopl
   - Create UI for creating events
   - Set up a system for admin to approve the event
   - Create a feature to display and search for events
+
+![Home Page Sketch]()
+
+![Chat Board Sketch]()
+
+![Messages Sketch]()
