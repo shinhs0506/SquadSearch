@@ -60,6 +60,6 @@ Grouping algorithm that would take in data from users and create groups of peopl
 
 ![Home Page Sketch]()
 
-![Chat Board Sketch](https://lh3.googleusercontent.com/keep-bbsk/AGk0z-OjJsvVam8QH6GZALarQfSSpK80WW4fpd78SztzxzpbfJYWED58EfoI08ARkl5JOVhtLUrzstdZkUm4dx7RlNHL8nuDME0PpvYRKY4=s512)
+![Chat Board Sketch]()
 
 ![Messages Sketch]()
