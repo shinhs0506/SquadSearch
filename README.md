@@ -29,7 +29,7 @@ Help people find and create groups for whatever activity they want (ex. Tennis p
 ## **What will users be able to do with this data?**
 Users will be able to view profiles, message chat boards and other users
 
-## ** What is some additional functionality you can add/remove based on time constraints?**
+## **What is some additional functionality you can add/remove based on time constraints?**
 
 Grouping algorithm that would take in data from users and create groups of people that would most likely get along based on similar interests. 
 
