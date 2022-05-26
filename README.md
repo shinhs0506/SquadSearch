@@ -58,8 +58,8 @@ Grouping algorithm that would take in data from users and create groups of peopl
   - Set up a system for admin to approve the event
   - Create a feature to display and search for events
 
-![Home Page Sketch](https://github.com/CPSC455-Gamers/SquadSearch/blob/main/IMG_2937.JPG)
+![Messages Sketch](https://github.com/CPSC455-Gamers/SquadSearch/blob/main/IMG_2937.JPG)
 
-![Chat Board Sketch]()
+![Chat Board Sketch](https://github.com/CPSC455-Gamers/SquadSearch/blob/main/chatBoardSketch455.png)
 
-![Messages Sketch]()
+![Home Page Sketch](https://github.com/CPSC455-Gamers/SquadSearch/blob/main/homePageSketch455.jpeg)
