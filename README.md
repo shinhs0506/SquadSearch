@@ -9,8 +9,10 @@ Help people find and create groups for whatever activity they want (ex. Tennis p
 ## **What type of data will it store?**
 
 - Chatboards
-  - Messages
+  - Participants
   - Different channels
+- Channels
+  - Messages
 - User profile
   - Name
   - Email
@@ -18,7 +20,7 @@ Help people find and create groups for whatever activity they want (ex. Tennis p
   - Bio
   - Profile pic
 - Private messages
-  - Message (text)
+  - Messages 
   - Timestamp
 - Events
   - Name
@@ -27,7 +29,7 @@ Help people find and create groups for whatever activity they want (ex. Tennis p
   - People going
 
 ## **What will users be able to do with this data?**
-Users will be able to view profiles, message chat boards and other users
+Users will be able to view and update profiles, message chat boards and other users
 
 ## **What is some additional functionality you can add/remove based on time constraints?**
 
@@ -58,8 +60,8 @@ Grouping algorithm that would take in data from users and create groups of peopl
   - Set up a system for admin to approve the event
   - Create a feature to display and search for events
 
-![Messages Sketch](https://github.com/CPSC455-Gamers/SquadSearch/blob/main/IMG_2937.JPG)
+<img src="https://github.com/CPSC455-Gamers/SquadSearch/blob/main/handin/page_design/home_page_design.jpeg" width="600">
 
-![Chat Board Sketch](https://github.com/CPSC455-Gamers/SquadSearch/blob/main/chatBoardSketch455.png)
+<img src="https://github.com/CPSC455-Gamers/SquadSearch/blob/main/handin/page_design/messaging_page_design.jpg" width="600">
 
-![Home Page Sketch](https://github.com/CPSC455-Gamers/SquadSearch/blob/main/homePageSketch455.jpeg)
+<img src="https://github.com/CPSC455-Gamers/SquadSearch/blob/main/handin/page_design/chatboard_page_design.jpg" width="600">
