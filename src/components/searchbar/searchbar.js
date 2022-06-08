@@ -18,7 +18,7 @@ function Searchbar() {
         <div>
             <h1>Searchbar</h1>
             <form onSubmit={handleSearchQuerySubmit}>
-                <TextField label="Search" value={searchQuery} onChange={handleSearchQueryChange}/>
+                <TextField label="Search" value={searchQuery} onChange={handleSearchQueryChange} />
                 <IconButton type="submit">
                     <SearchIcon />
                 </IconButton>
