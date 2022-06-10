@@ -8,7 +8,7 @@ export default function Searchbar(props) {
           <img src={props.img} />
         </div>
         <div className="contentBx">
-          <h2>Ariana Grande</h2>
+          <h2 className="name">{props.name}</h2>
           <div className="date">
             <h3>Date : </h3>
             <span>{props.date}</span>

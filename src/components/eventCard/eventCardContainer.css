@@ -1,0 +1,7 @@
+.container {
+  /* display: grid;
+  grid-template-rows: 20px 50 px 1fr 50px; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
