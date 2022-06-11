@@ -1,72 +1,52 @@
-import { useDispatch } from "react-redux";
-import { newEvent } from "../../redux/slices/newEventSlice";
-import { useRef } from "react";
+
+import {useDispatch} from 'react-redux';
+import {createEvent} from 'redux/slices/eventSlice'
+import { useRef } from 'react';
+
 
 //TODO: Maybe look into redux form
 
 export default function NewEventForm() {
-  const eventTitle = useRef();
-  const eventDate = useRef();
-  const eventLocation = useRef();
-  const dispatch = useDispatch();
 
-  function dispatchInput() {
-    const inputName = eventTitle.current.value;
-    const inputDate = eventDate.current.value;
-    const inputLocation = eventLocation.current.value;
-    // console.log("hi");
-    dispatch(
-      newEvent({ Name: inputName, Date: inputDate, Location: inputLocation })
-    );
-  }
+    const eventName = useRef()
+    const eventDate = useRef()
+    const eventLocation = useRef()
+    const dispatch = useDispatch()
 
-  function resetForm() {
-    eventTitle.current.value = "";
-    eventDate.current.value = "";
-    eventLocation.current.value = "";
-  }
+    function dispatchInput(){
+        const inputName = eventName.current.value
+        const inputDate = eventDate.current.value
+        const inputLocation = eventLocation.current.value
+        dispatch(createEvent({Name: inputName, Date: inputDate, Location: inputLocation})) 
+      } 
+      
+      function resetForm(){
+        eventName.current.value = ''
+        eventDate.current.value = ''
+        eventLocation.current.value = ''
+      }
 
   return (
     <div>
       <h1>New Event Form</h1>
-      <form
-        id="new_event"
-        onSubmit={(event) => {
-          event.preventDefault();
-          dispatchInput();
-          resetForm();
-        }}
-      >
+
+      <form id="new_event" onSubmit={(event)=>{
+            event.preventDefault()
+            dispatchInput()
+            resetForm()
+          }
+        }>
         <label htmlFor="name">Name</label>
-        <input type="text" id="name" name="name" ref={eventTitle} />
-        <br />
+        <input type="text" id="name" name="name" ref={eventName}/>
+        <br/>
         <label htmlFor="date ">Date</label>
-        <input type="date" id="date" name="date" ref={eventDate} />
-        <br />
+        <input type="date" id="date" name="date" ref={eventDate}/>
+        <br/>
         <label htmlFor="location">Location</label>
-        <input type="text" id="location" name="location" ref={eventLocation} />
-        <br />
-        <input type="submit" id="submitButton" />
-      </form>
-      {/* <form
-        id="new_event"
-        onSubmit={(event) => {
-          event.preventDefault();
-          dispatchInput();
-          resetForm();
-        }}
-      >
-        <label htmlFor="name">Name</label>
-        <input type="text" id="name" name="name" ref={eventTitle} />
-        <br />
-        <label htmlFor="date ">Date</label>
-        <input type="date" id="date" name="date" ref={eventDate} />
-        <br />
-        <label htmlFor="location">Location</label>
-        <input type="text" id="location" name="location" ref={eventLocation} />
-        <br />
-        <input htmltype="submit" id="submitButton" />
-      </form> */}
+        <input type="text" id="location" name="location" ref={eventLocation}/>
+        <br/>
+        <input type="submit" value="Submit" id="submitButton"/>
+      </form> 
     </div>
   );
 }
