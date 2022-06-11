@@ -2,28 +2,20 @@ import EventCard from "./eventCard.js";
 import Store from "../../redux/store";
 import React from "react";
 import "./eventCardContainer.css";
+import { useSelector } from "react-redux";
 
 export default function EventCardContainer(props) {
-  const [events, setEvents] = React.useState([]);
-  Store.subscribe(() => {
-    // console.log("hi");
-    let curr = Store.getState().newEvent.events;
-    // console.log(curr);
-    let i = 0;
-    const elements = curr.map((event) => {
-      let j = i;
-      i++;
-      return (
-        <EventCard
-          key={j.toString()}
-          name={event.Name}
-          date={event.Date}
-          location={event.Location}
-        />
-      );
-    });
-    setEvents(elements);
-    return <div className="card-container">{elements}</div>;
+  const curr = useSelector((state) => state.newEvent.events);
+  const elements = curr.map((event, i) => {
+    i++;
+    return (
+      <EventCard
+        key={i.toString()}
+        name={event.Name}
+        date={event.Date}
+        location={event.Location}
+      />
+    );
   });
   return (
     <div className="container">
@@ -33,7 +25,7 @@ export default function EventCardContainer(props) {
         date="2022-06-23"
         location="Rogers Arena"
       />
-      {events}
+      {elements}
     </div>
   );
 }
