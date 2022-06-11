@@ -1,9 +1,9 @@
-
 import Searchbar from "components/searchbar/searchbar";
 import Navbar from "components/navbar/navbar";
 import AppRoutes from "routes";
 import EventCard from "./components/eventCard/eventCard.js";
-import NewEventForm from 'components/newEventForm/newEventForm';
+import NewEventForm from "components/newEventForm/newEventForm";
+import NewProfileForm from "components/newProfileForm/newProfileForm.js";
 
 import "./App.css";
 
@@ -19,6 +19,7 @@ function App() {
                 date="Oct 9 2022"
                 location="Rogers Arena"
               />
+            <NewProfileForm />
         </div>
   );
 }
