@@ -1,10 +1,13 @@
+
 import {useDispatch} from 'react-redux';
 import {createEvent} from 'redux/slices/eventSlice'
 import { useRef } from 'react';
 
+
 //TODO: Maybe look into redux form
 
 export default function NewEventForm() {
+
     const eventName = useRef()
     const eventDate = useRef()
     const eventLocation = useRef()
@@ -26,6 +29,7 @@ export default function NewEventForm() {
   return (
     <div>
       <h1>New Event Form</h1>
+
       <form id="new_event" onSubmit={(event)=>{
             event.preventDefault()
             dispatchInput()
