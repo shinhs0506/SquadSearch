@@ -1,18 +1,18 @@
-import { useState } from 'react'
-import TextField from '@mui/material/TextField'
-import IconButton from '@mui/material/IconButton'
-import SearchIcon from '@mui/icons-material/Search'
+import React, { useState } from 'react';
+import TextField from '@mui/material/TextField';
+import IconButton from '@mui/material/IconButton';
+import SearchIcon from '@mui/icons-material/Search';
 
 function Searchbar() {
-    const [searchQuery, setSearchQuery] = useState('')
+    const [searchQuery, setSearchQuery] = useState('');
 
     const handleSearchQueryChange = (e) => {
-        setSearchQuery(e.target.value)
-    }
+        setSearchQuery(e.target.value);
+    };
 
     const handleSearchQuerySubmit = () => {
-        console.log(searchQuery)
-    }
+        // console.log(searchQuery);
+    };
 
     return (
         <div>
@@ -24,7 +24,7 @@ function Searchbar() {
                 </IconButton>
             </form>
         </div>
-    )
+    );
 }
 
 export default Searchbar;
