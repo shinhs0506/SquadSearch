@@ -16,11 +16,11 @@ jobs:
         run: | 
           cd frontend
           npm install
-          npm run eslint
+          npm run lint
 
       - name: backend lint check
         working-directory: ./
         run: |
           cd backend
           npm install
-          eslint .
+          ./node_modules/.bin/eslint .
