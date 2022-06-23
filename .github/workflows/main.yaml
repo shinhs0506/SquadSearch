@@ -9,18 +9,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      -uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-      -name: frontend lint check
-       working-directory: ./
-       run: | 
-         cd frontend
-         npm install
-         npm run eslint
+      - name: frontend lint check
+        working-directory: ./
+        run: | 
+          cd frontend
+          npm install
+          npm run eslint
 
-      -name: backend lint check
-       working-directory: ./
-       run: |
-         cd backend
-         npm install
-         eslint .
+      - name: backend lint check
+        working-directory: ./
+        run: |
+          cd backend
+          npm install
+          eslint .
