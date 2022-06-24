@@ -4,7 +4,7 @@ import { createEvent } from 'redux/slices/eventSlice';
 
 // TODO: Maybe look into redux form
 
-export default function NewEventForm() {
+export default function CreateEventForm() {
     const eventName = useRef();
     const eventDate = useRef();
     const eventLocation = useRef();

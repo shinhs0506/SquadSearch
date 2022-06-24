@@ -26,6 +26,12 @@ function Navbar() {
                             />
                         </Link>
                     </Typography>
+                    <Typography>
+                        <Link to="/create-event"> Create Event </Link>
+                    </Typography>
+                    <Typography>
+                        <Link to="/sign-up"> Sign Up </Link>
+                    </Typography>
                 </Toolbar>
             </AppBar>
         </div>
