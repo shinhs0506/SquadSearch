@@ -25,7 +25,8 @@
         "react/jsx-indent": ["error", 4],
         "quotes": ["error", "single"],
         "react/require-default-props": "off",
-        "no-unused-vars": "warn"
+        "no-unused-vars": "warn",
+        "no-param-reassign": 0
     },
     "settings": {
         "import/resolver": {

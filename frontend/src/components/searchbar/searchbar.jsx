@@ -2,16 +2,22 @@ import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
+import { useDispatch } from 'react-redux';
+
+import { filterEvents } from 'redux/slices/eventSlice';
 
 function Searchbar() {
     const [searchQuery, setSearchQuery] = useState('');
+    const dispatch = useDispatch();
 
     const handleSearchQueryChange = (e) => {
         setSearchQuery(e.target.value);
     };
 
-    const handleSearchQuerySubmit = () => {
-        // console.log(searchQuery);
+    const handleSearchQuerySubmit = (e) => {
+        e.preventDefault();
+
+        dispatch(filterEvents(searchQuery));
     };
 
     return (
