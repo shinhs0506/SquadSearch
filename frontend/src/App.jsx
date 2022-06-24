@@ -2,7 +2,6 @@ import React from 'react';
 import Searchbar from 'components/searchbar/searchbar';
 import Navbar from 'components/navbar/navbar';
 import AppRoutes from 'routes';
-import NewEventForm from 'components/newEventForm/newEventForm';
 import EventCardContainer from 'components/eventCard/eventCardContainer';
 import './App.css';
 
@@ -13,7 +12,6 @@ function App() {
             <Navbar />
             <AppRoutes />
             <Searchbar />
-            <NewEventForm />
             <EventCardContainer />
         </div>
     );

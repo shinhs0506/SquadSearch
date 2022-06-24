@@ -19,6 +19,7 @@
     ],
     "ignorePatterns": ["**/*.test.jsx"],
     "rules": {
+        "linebreak-style": 0,
         "indent": ["error", 4, {
             "ignoredNodes": ["JSXElement", "JSXElement > *", "JSXAttribute", "JSXIdentifier", "JSXNamespacedName", "JSXMemberExpression", "JSXSpreadAttribute", "JSXExpressionContainer", "JSXOpeningElement", "JSXClosingElement", "JSXText", "JSXEmptyExpression", "JSXSpreadChild"]
         }],
