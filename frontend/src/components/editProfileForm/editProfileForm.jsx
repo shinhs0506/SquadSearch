@@ -2,8 +2,6 @@ import { useDispatch } from 'react-redux';
 import { editProfile } from 'redux/slices/profileSlice';
 import { React, useRef } from 'react';
 
-// TODO: Maybe look into redux form
-
 export default function EditProfileForm() {
     const dispatch = useDispatch();
     const profileUname = useRef();
@@ -34,7 +32,7 @@ export default function EditProfileForm() {
             bio,
         }));
     }
-    // TODO: Put restrictions on input fields like password chars and confirm pass matching.
+
     return (
         <div>
             <h1>Edit Profile</h1>
