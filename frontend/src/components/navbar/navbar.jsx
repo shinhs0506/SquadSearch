@@ -28,6 +28,9 @@ function Navbar() {
                     <Typography>
                         <Link to="/sign-up"> Sign Up </Link>
                     </Typography>
+                    <Typography>
+                        <Link to="/edit-profile"> Edit Profile </Link>
+                    </Typography>
                 </Toolbar>
             </AppBar>
         </div>
