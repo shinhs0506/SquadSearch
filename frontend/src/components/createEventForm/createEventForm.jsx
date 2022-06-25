@@ -10,6 +10,7 @@ export default function CreateEventForm() {
   const eventLocation = useRef();
   const dispatch = useDispatch();
 
+
   function dispatchInput() {
     const inputName = eventName.current.value;
     const inputDate = eventDate.current.value;
