@@ -24,10 +24,12 @@
             "ignoredNodes": ["JSXElement", "JSXElement > *", "JSXAttribute", "JSXIdentifier", "JSXNamespacedName", "JSXMemberExpression", "JSXSpreadAttribute", "JSXExpressionContainer", "JSXOpeningElement", "JSXClosingElement", "JSXText", "JSXEmptyExpression", "JSXSpreadChild"]
         }],
         "react/jsx-indent": ["error", 4],
-        "quotes": ["error", "single"],
+        "react/jsx-quotes": "off",
         "react/require-default-props": "off",
+        "quotes": ["error", "single"],
         "no-unused-vars": "warn",
-        "no-param-reassign": 0
+        "no-param-reassign": 0,
+        "import/prefer-default-export": "off"
     },
     "settings": {
         "import/resolver": {
