@@ -1,10 +1,10 @@
 import { useDispatch } from 'react-redux';
-import { createProfile } from 'redux/slices/profileSlice';
+import { editProfile } from 'redux/slices/profileSlice';
 import { React, useRef } from 'react';
 
 // TODO: Maybe look into redux form
 
-export default function NewProfileForm() {
+export default function EditProfileForm() {
     const dispatch = useDispatch();
     const profileUname = useRef();
     const profilePassword = useRef();
@@ -24,7 +24,7 @@ export default function NewProfileForm() {
         const pic = profilePic.current.value;
         const bio = profileBio.current.value;
 
-        dispatch(createProfile({
+        dispatch(editProfile({
             username,
             pass,
             dName,
@@ -37,7 +37,7 @@ export default function NewProfileForm() {
     // TODO: Put restrictions on input fields like password chars and confirm pass matching.
     return (
         <div>
-            <h1>Create Profile</h1>
+            <h1>Edit Profile</h1>
             <form
               id="new_profile"
               onSubmit={(event) => {

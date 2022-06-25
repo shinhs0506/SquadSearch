@@ -4,7 +4,7 @@ import { createEvent } from 'redux/slices/eventSlice';
 
 // TODO: Maybe look into redux form
 
-export default function CreateEventForm() {
+export default function EditProfileForm() {
     const eventName = useRef();
     const eventDate = useRef();
     const eventLocation = useRef();
