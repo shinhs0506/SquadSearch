@@ -4,6 +4,7 @@ import Home from 'pages/home/home';
 import Message from 'pages/message/message';
 import SignUp from 'pages/signUp/signUp';
 import CreateEvent from 'pages/createEvent/createEvent';
+import EditProfile from 'pages/editProfile/editProfile';
 
 function AppRoutes() {
     return (
@@ -12,6 +13,7 @@ function AppRoutes() {
             <Route path="/message" element={<Message />} />
             <Route path="/create-event" element={<CreateEvent />} />
             <Route path="/sign-up" element={<SignUp />} />
+            <Route path="/edit-profile" element={<EditProfile />} />
         </Routes>
     );
 }
