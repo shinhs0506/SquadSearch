@@ -1,26 +1,26 @@
-# # CD
+# CD
 
-# name: CD
-# on:
-#   pull_request:
-#     branches: [ main ]
+name: CD
+on:
+  pull_request:
+    branches: [ main ]
 
-# jobs:
-#   build:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/checkout@v2
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
 
-#       - name: frontend lint check
-#         working-directory: ./
-#         run: |
-#           cd frontend
-#           npm install
-#           npm run lint
+      - name: frontend lint check
+        working-directory: ./
+        run: |
+          cd frontend
+          npm install
+          npm run lint
 
-#       - name: backend lint check
-#         working-directory: ./
-#         run: |
-#           cd backend
-#           npm install
-#           ./node_modules/.bin/eslint .
+      - name: backend lint check
+        working-directory: ./
+        run: |
+          cd backend
+          npm install
+          ./node_modules/.bin/eslint .
