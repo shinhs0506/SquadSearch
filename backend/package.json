@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "_moduleAliases": {
     "@root": ".",
     "@controllers": "./controllers/"

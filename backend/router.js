@@ -1,9 +1,8 @@
-const express = require('express');
-
-const eventController = require('./controllers/eventController');
+import express from 'express';
+import eventController from './controllers/eventController.js';
 
 const router = express.Router();
 
 router.get('/api/events', eventController.getAllEvents);
 
-exports.router = router;
+export default router;

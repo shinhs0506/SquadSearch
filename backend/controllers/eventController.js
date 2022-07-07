@@ -10,4 +10,4 @@ const getAllEvents = async (req, res) => {
     res.json(events);
 };
 
-exports.getAllEvents = getAllEvents;
+export default { getAllEvents };
