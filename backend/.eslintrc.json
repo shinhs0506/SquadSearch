@@ -11,6 +11,12 @@
         "ecmaVersion": "latest"
     },
     "rules": {
-        "indent": ["error", 4]
+        "indent": ["error", 4],
+        "import/extensions": [
+            "error", 
+            {
+                "js": "ignorePackages"
+            }
+        ]
     }
 }
