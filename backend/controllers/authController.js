@@ -32,7 +32,7 @@ const loginUser = async (req, res) => {
         if (isMatch) {
             const payload = { id: user.id, email: user.email };
             const token = jwt.sign(payload, 'secretKey');
-            return res.send("Bearer " + token);
+            return res.send(`Bearer ${token}`);
         }
         return res.status(400).send({ message: 'Wrong password' });
     } catch (e) {
