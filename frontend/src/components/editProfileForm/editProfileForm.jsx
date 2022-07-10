@@ -1,6 +1,7 @@
-import { useDispatch } from 'react-redux';
-import { editProfile } from 'redux/slices/profileSlice';
 import { React, useRef } from 'react';
+import { useDispatch } from 'react-redux';
+
+import { authSliceActions } from 'redux/slices/authSlice';
 
 export default function EditProfileForm() {
     const dispatch = useDispatch();
@@ -22,7 +23,7 @@ export default function EditProfileForm() {
         const pic = profilePic.current.value;
         const bio = profileBio.current.value;
 
-        dispatch(editProfile({
+        dispatch(authSliceActions.editProfile({
             username,
             pass,
             dName,
