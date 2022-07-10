@@ -1,7 +1,7 @@
 import { React, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { profileActions } from 'redux/slices/profileSlice';
+import { authSliceActions } from 'redux/slices/authSlice';
 
 function LoginForm() {
     const dispatch = useDispatch();
@@ -14,7 +14,7 @@ function LoginForm() {
         const email = emailInput.current.value;
         const password = passwordInput.current.value;
 
-        dispatch(profileActions.loginUser({
+        dispatch(authSliceActions.loginUser({
             email,
             password,
         }));

@@ -15,7 +15,7 @@ import EditProfile from 'pages/editProfile/editProfile';
 function Guard(props) {
     const { routeRedirect } = props
     const location = useLocation();
-    let isLoggedIn = useSelector((state) => state.profile.isLoggedIn);
+    let isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
     return isLoggedIn
         ? <Outlet />

@@ -9,7 +9,7 @@ import { Button } from '@mui/material';
 import useLogout from 'service/authService'
 
 function Navbar() {
-    let isLoggedIn = useSelector((state) => state.profile.isLoggedIn);
+    let isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
     const logout = useLogout();
 
     const handleLogout = () => {

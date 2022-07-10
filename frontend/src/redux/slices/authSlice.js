@@ -27,8 +27,8 @@ const signupUser = createAsyncThunk(
     }
 )
 
-const profileSlice = createSlice({
-    name: 'profileSlice',
+const authSlice = createSlice({
+    name: 'authSlice',
     initialState: {
         isLoggedIn: false,
         isSignningUp: false,
@@ -71,5 +71,5 @@ const profileSlice = createSlice({
     }
 });
 
-export const profileActions = { loginUser, signupUser, ...profileSlice.actions };
-export default profileSlice.reducer;
+export const authSliceActions = { loginUser, signupUser, ...authSlice.actions };
+export default authSlice.reducer;

@@ -1,6 +1,7 @@
-import { useDispatch } from 'react-redux';
-import { profileActions } from 'redux/slices/profileSlice';
 import { React, useRef } from 'react';
+import { useDispatch } from 'react-redux';
+
+import { authSliceActions } from 'redux/slices/authSlice';
 
 // TODO: Maybe look into redux form
 
@@ -26,7 +27,7 @@ export default function NewProfileForm() {
         // const pic = profilePic.current.value;
         // const bio = profileBio.current.value;
 
-        dispatch(profileActions.signupUser({
+        dispatch(authSliceActions.signupUser({
             name,
             email,
             // dName,

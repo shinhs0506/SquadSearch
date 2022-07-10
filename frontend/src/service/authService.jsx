@@ -1,11 +1,11 @@
 import { useDispatch } from 'react-redux';
-import { profileActions } from 'redux/slices/profileSlice'
+import { authSliceActions } from 'redux/slices/authSlice'
 
 const useLogout = () => {
     const dispatch = useDispatch()
 
     const logout = async() => {
-        dispatch(profileActions.logout());
+        dispatch(authSliceActions.logout());
     }
 
     return logout;
