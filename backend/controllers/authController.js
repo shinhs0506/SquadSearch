@@ -32,8 +32,8 @@ const loginUser = async (req, res) => {
         if (isMatch) {
             const payload = { id: user.id, email: user.email };
             const token = jwt.sign(payload, 'secretKey', { expiresIn: '20d' });
-            let tokenParts = token.split('.')
-            return res.send({ tokenHeader: tokenParts[0], tokenBody: tokenParts[1]});
+            const tokenParts = token.split('.');
+            return res.send({ tokenHeader: tokenParts[0], tokenBody: tokenParts[1] });
         }
         return res.status(400).send({ message: 'Wrong password' });
     } catch (e) {
