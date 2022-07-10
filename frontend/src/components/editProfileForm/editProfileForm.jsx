@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { editProfile } from 'redux/slices/profileSlice';
+import { profileActions } from 'redux/slices/profileSlice';
 import { React, useRef } from 'react';
 
 export default function EditProfileForm() {
@@ -22,7 +22,7 @@ export default function EditProfileForm() {
         const pic = profilePic.current.value;
         const bio = profileBio.current.value;
 
-        dispatch(editProfile({
+        dispatch(profileActions.editProfile({
             username,
             pass,
             dName,
