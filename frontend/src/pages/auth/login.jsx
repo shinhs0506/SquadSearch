@@ -2,22 +2,20 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import LoginForm from 'components/loginForm/loginForm'
+import LoginForm from 'components/loginForm/loginForm';
 
 function Login() {
-    let isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
-    let nagivate = useNavigate()
+    const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+    const nagivate = useNavigate();
 
     useEffect(() => {
         if (isLoggedIn) {
-            nagivate('/')
+            nagivate('/');
         }
-    }, [isLoggedIn])
+    }, [isLoggedIn]);
 
     return (
-        <>
-            <LoginForm />
-        </>
+        <LoginForm />
     );
 }
 

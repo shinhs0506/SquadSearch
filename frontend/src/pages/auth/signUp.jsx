@@ -6,16 +6,16 @@ import { authSliceActions } from 'redux/slices/authSlice';
 import NewProfileForm from 'components/newProfileForm/newProfileForm';
 
 function SignUp() {
-    let isSignningUp = useSelector((state) => state.auth.isSignningUp);
-    let nagivate = useNavigate()
-    let dispatch = useDispatch()
+    const isSignningUp = useSelector((state) => state.auth.isSignningUp);
+    const nagivate = useNavigate();
+    const dispatch = useDispatch();
 
     useEffect(() => {
         if (isSignningUp) {
-            nagivate('/login')
+            nagivate('/login');
             dispatch(authSliceActions.setIsSignningUp(false));
         }
-    }, [isSignningUp])
+    }, [isSignningUp]);
 
     return (
         <div>

@@ -9,7 +9,7 @@ function LoginForm() {
     const passwordInput = useRef();
 
     function dispatchInput(e) {
-        e.preventDefault()
+        e.preventDefault();
 
         const email = emailInput.current.value;
         const password = passwordInput.current.value;
@@ -20,7 +20,7 @@ function LoginForm() {
         }));
     }
 
-    // TODO: Put restrictions on input fields 
+    // TODO: Put restrictions on input fields
     return (
         <div>
             <h1>Login</h1>
@@ -43,4 +43,4 @@ function LoginForm() {
     );
 }
 
-export default LoginForm
+export default LoginForm;

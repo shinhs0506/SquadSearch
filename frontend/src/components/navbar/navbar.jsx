@@ -6,15 +6,15 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { Button } from '@mui/material';
 
-import useLogout from 'service/authService'
+import useLogout from 'service/authService';
 
 function Navbar() {
-    let isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+    const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
     const logout = useLogout();
 
     const handleLogout = () => {
-        logout()
-    }
+        logout();
+    };
 
     if (isLoggedIn) {
         return (
@@ -61,7 +61,7 @@ function Navbar() {
                 </Toolbar>
             </AppBar>
         </div>
-    )
+    );
 }
 
 export default Navbar;

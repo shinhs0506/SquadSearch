@@ -3,29 +3,29 @@ import AuthAPI from 'service/api/authApi';
 
 const loginUser = createAsyncThunk(
     'auth/login',
-    async(input, thunkAPI) => {
+    async (input, thunkAPI) => {
         try {
-            let { email, password } = input;
-            let data = await AuthAPI.loginUser(email, password);
+            const { email, password } = input;
+            const data = await AuthAPI.loginUser(email, password);
             return data;
-        } catch(e) {
+        } catch (e) {
             return thunkAPI.rejectWithValue(e);
         }
-    }
-)
+    },
+);
 
 const signupUser = createAsyncThunk(
     'auth/signup',
-    async(input, thunkAPI) => {
+    async (input, thunkAPI) => {
         try {
-            let { name, email, password } = input;
+            const { name, email, password } = input;
             const data = await AuthAPI.signupUser(name, email, password);
             return data;
-        } catch(e) {
-            return thunkAPI.rejectWithValue(e)
+        } catch (e) {
+            return thunkAPI.rejectWithValue(e);
         }
-    }
-)
+    },
+);
 
 const authSlice = createSlice({
     name: 'authSlice',
@@ -45,30 +45,30 @@ const authSlice = createSlice({
             state.profiles[index] = action.payload;
         },
         logout: (state, action) => {
-            state.isLoggedIn = false,
-            state.name = '',
-            state.email = ''
+            state.isLoggedIn = false;
+            state.name = '';
+            state.email = '';
         },
         setIsSignningUp: (state, action) => {
-            state.isSignningUp = action.payload
-        }
+            state.isSignningUp = action.payload;
+        },
     },
     extraReducers: (builder) => {
         builder.addCase(loginUser.fulfilled, (state, action) => {
-            state.isLoggedIn = true,
-            state.name = action.name,
-            state.email = action.email
-        })
+            state.isLoggedIn = true;
+            state.name = action.name;
+            state.email = action.email;
+        });
         builder.addCase(loginUser.rejected, (state, action) => {
-            console.log('login failed', action.payload.response.data.message)
-        })
+            console.log('login failed', action.payload.response.data.message);
+        });
         builder.addCase(signupUser.fulfilled, (state, action) => {
-            state.isSignningUp = true
-        })
+            state.isSignningUp = true;
+        });
         builder.addCase(signupUser.rejected, (state, action) => {
-            console.log('signup failed', action.payload.response.data.message)
-        })
-    }
+            console.log('signup failed', action.payload.response.data.message);
+        });
+    },
 });
 
 export const authSliceActions = { loginUser, signupUser, ...authSlice.actions };
