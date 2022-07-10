@@ -1,6 +1,7 @@
-import { useDispatch } from 'react-redux';
-import { authSliceActions } from 'redux/slices/authSlice';
 import { React, useRef } from 'react';
+import { useDispatch } from 'react-redux';
+
+import { authSliceActions } from 'redux/slices/authSlice';
 
 export default function EditProfileForm() {
     const dispatch = useDispatch();

@@ -20,7 +20,7 @@ function LoginForm() {
         }));
     }
 
-    // TODO: Put restrictions on input fields like password chars and confirm pass matching.
+    // TODO: Put restrictions on input fields 
     return (
         <div>
             <h1>Login</h1>

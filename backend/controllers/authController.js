@@ -5,7 +5,6 @@ import User from '../models/user.js';
 
 const signupUser = async (req, res) => {
     const { name, email, password } = req.body;
-    console.log(req.body)
 
     try {
         await User.findOne({ email }).orFail();
@@ -24,7 +23,6 @@ const signupUser = async (req, res) => {
 };
 
 const loginUser = async (req, res) => {
-    console.log('hit')
     const { email, password } = req.body;
 
     try {

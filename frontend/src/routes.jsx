@@ -25,20 +25,20 @@ function Guard(props) {
 function AppRoutes() {
     return (
         <>
-        <Toolbar />
-        <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/sign-up" element={<SignUp />} />
+            <Toolbar />
+            <Routes>
+                <Route path="/login" element={<Login />} />
+                <Route path="/sign-up" element={<SignUp />} />
 
-            <Route element={<Guard routeRedirect="/login" />} >
-                <Route path="/" element={<Home />} />
-                <Route path="/message" element={<Message />} />
-                <Route path="/create-event" element={<CreateEvent />} />
-                <Route path="/chatboard" element={<Chatboard />} />
-                <Route path="/edit-profile" element={<EditProfile />} />
-                <Route path="/logout" element={<Logout />} />
-            </ Route>
-        </ Routes>
+                <Route element={<Guard routeRedirect="/login" />} >
+                    <Route path="/" element={<Home />} />
+                    <Route path="/message" element={<Message />} />
+                    <Route path="/create-event" element={<CreateEvent />} />
+                    <Route path="/chatboard" element={<Chatboard />} />
+                    <Route path="/edit-profile" element={<EditProfile />} />
+                    <Route path="/logout" element={<Logout />} />
+                </ Route>
+            </ Routes>
         </>
     );
 }
