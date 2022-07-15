@@ -8,10 +8,7 @@ const getAllEvents = async (req, res) => {
             return res.send(events);
         }
         const events = await Event.find({});
-        return res.send({
-            data: events,
-            message: 'Successfully retrieved all events',
-        });
+        return res.send(events);
     } catch (e) {
         return res.status(500).send({ message: 'Error occured while retrieving events' });
     }
@@ -21,10 +18,7 @@ const getAllEventsContainingName = async (req, res) => {
     try {
         const { query } = req.query;
         const events = await Event.find({ name: { $regex: query, $options: 'i' } });
-        return res.send({
-            data: events,
-            message: `Successfully retrieved events with name containing ${query}`,
-        });
+        return res.send(events);
     } catch (e) {
         return res.status(500).send({ message: 'Error occured while filtering events' });
     }
@@ -39,10 +33,7 @@ const createEvent = async (req, res) => {
             location,
             date,
         });
-        return res.send({
-            data: event,
-            message: `Successfully created an ${name} event`,
-        });
+        return res.send(event);
     } catch (e) {
         return res.status(500).send({ message: 'Error occured while creating an event, please try again' });
     }
@@ -52,11 +43,8 @@ const deleteEventByID = async (req, res) => {
     const { id } = req.params;
 
     try {
-        const event = await Event.findByIdAndRemove(id);
-        return res.send({
-            data: id,
-            message: `Successfully deleted an ${event.name} event`,
-        });
+        await Event.findByIdAndRemove(id);
+        return res.send(id);
     } catch (e) {
         return res.status(500).send({ message: 'Error occured while deleting an event, please try again' });
     }

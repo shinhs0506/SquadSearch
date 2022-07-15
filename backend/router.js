@@ -7,6 +7,7 @@ const router = express.Router();
 // auth endpoints
 router.post('/api/auth/signup', authController.signupUser);
 router.post('/api/auth/login', authController.loginUser);
+router.post('/api/auth/logout', authController.logoutUser);
 
 // event endpoints
 router.get('/api/events', eventController.getAllEvents);

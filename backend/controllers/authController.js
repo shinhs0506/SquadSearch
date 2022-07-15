@@ -18,10 +18,7 @@ const signupUser = async (req, res) => {
             email,
             password: hashedPassword,
         });
-        return res.send({
-            data: user,
-            message: `Successfully signed up with email ${email}`,
-        });
+        return res.send(user);
     }
 };
 
@@ -37,11 +34,8 @@ const loginUser = async (req, res) => {
             const token = jwt.sign(payload, 'secretKey', { expiresIn: '20d' });
             const tokenParts = token.split('.');
             return res.send({
-                data: {
-                    tokenHeader: tokenParts[0],
-                    tokenBody: tokenParts[1],
-                },
-                message: `Welcome back ${user.email}`,
+                tokenHeader: tokenParts[0],
+                tokenBody: tokenParts[1],
             });
         }
         return res.status(400).send({ message: 'Wrong password' });
@@ -50,4 +44,15 @@ const loginUser = async (req, res) => {
     }
 };
 
-export default { signupUser, loginUser };
+const logoutUser = async (req, res) => {
+    const { email } = req.body;
+
+    try {
+        const user = await User.findOne({ email }).orFail();
+        return res.send(user);
+    } catch (e) {
+        return res.status(400).send({ message: 'Email not found' });
+    }
+};
+
+export default { signupUser, loginUser, logoutUser };
