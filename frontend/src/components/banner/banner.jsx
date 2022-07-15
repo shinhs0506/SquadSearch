@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Snackbar from '@mui/material/Snackbar';
+
 import { authSliceActions } from 'redux/slices/authSlice';
 import { eventSliceActions } from 'redux/slices/eventSlice';
 
