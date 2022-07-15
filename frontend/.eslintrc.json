@@ -29,7 +29,8 @@
         "quotes": ["error", "single"],
         "no-unused-vars": "warn",
         "no-param-reassign": 0,
-        "import/prefer-default-export": "off"
+        "import/prefer-default-export": "off",
+        "no-underscore-dangle": ["error", {"allow": ["_id"]}]
     },
     "settings": {
         "import/resolver": {

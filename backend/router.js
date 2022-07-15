@@ -10,5 +10,7 @@ router.post('/api/auth/login', authController.loginUser);
 
 // event endpoints
 router.get('/api/events', eventController.getAllEvents);
+router.post('/api/events', eventController.createEvent);
+router.delete('/api/event/:id', eventController.deleteEventByID);
 
 export default router;

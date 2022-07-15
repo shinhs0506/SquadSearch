@@ -4,7 +4,7 @@ import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 import { useDispatch } from 'react-redux';
 
-import { filterEvents } from 'redux/slices/eventSlice';
+import { eventSliceActions } from 'redux/slices/eventSlice';
 
 function Searchbar() {
     const [searchQuery, setSearchQuery] = useState('');
@@ -17,7 +17,7 @@ function Searchbar() {
     const handleSearchQuerySubmit = (e) => {
         e.preventDefault();
 
-        dispatch(filterEvents(searchQuery));
+        dispatch(eventSliceActions.filterEventByQuery({ searchQuery }));
     };
 
     return (

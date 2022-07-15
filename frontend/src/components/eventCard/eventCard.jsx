@@ -1,31 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { deleteEvents } from 'redux/slices/eventSlice';
+import { eventSliceActions } from 'redux/slices/eventSlice';
 import { Link } from 'react-router-dom';
 
 import './eventCard.css';
 // https://i.scdn.co/image/ab6761610000e5ebcdce7620dc940db079bf4952
-//
-/* eslint-disable no-alert, no-console */
-function Searchbar(props) {
-    const { src } = props;
-    const { name } = props;
-    const { date } = props;
-    const { location } = props;
+
+function EventCard(props) {
+    const {
+        _id, name, location, date, src,
+    } = props;
     const dispatch = useDispatch();
 
-    function dispatchInput() {
-        const inputName = name;
-        const inputDate = date;
-        const inputLocation = location;
-        dispatch(
-            deleteEvents({
-                Name: inputName,
-                Date: inputDate,
-                Location: inputLocation,
-            }),
-        );
+    function handleDelete() {
+        dispatch(eventSliceActions.deleteEventByID({ _id }));
     }
 
     return (
@@ -50,9 +39,7 @@ function Searchbar(props) {
 
                     <button
                       type="button"
-                      onClick={() => {
-                          dispatchInput();
-                      }}
+                      onClick={handleDelete}
                     >
                         Delete
                     </button>
@@ -62,11 +49,12 @@ function Searchbar(props) {
     );
 }
 
-Searchbar.propTypes = {
+EventCard.propTypes = {
     src: PropTypes.string,
+    _id: PropTypes.string,
     name: PropTypes.string,
     date: PropTypes.string,
     location: PropTypes.string,
 };
 
-export default Searchbar;
+export default EventCard;

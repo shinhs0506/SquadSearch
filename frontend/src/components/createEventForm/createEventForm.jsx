@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import { createEvent } from 'redux/slices/eventSlice';
+import { eventSliceActions } from 'redux/slices/eventSlice';
 
 // TODO: Maybe look into redux form
 
@@ -15,7 +15,11 @@ export default function CreateEventForm() {
         const inputDate = eventDate.current.value;
         const inputLocation = eventLocation.current.value;
         dispatch(
-            createEvent({ name: inputName, date: inputDate, location: inputLocation }),
+            eventSliceActions.createEvent({
+                name: inputName,
+                location: inputLocation,
+                date: inputDate,
+            }),
         );
     }
 
