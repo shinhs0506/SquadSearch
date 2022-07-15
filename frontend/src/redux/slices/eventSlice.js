@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import EventAPI from 'service/api/eventApi';
+import authSlice from './authSlice';
 
 const getAllEvents = createAsyncThunk(
     'event/getAll',
@@ -56,6 +57,7 @@ const eventSlice = createSlice({
     name: 'eventSlice',
     initialState: {
         events: [],
+        message: '',
     },
     reducers: {
         filterEvents: (state, action) => {
@@ -63,36 +65,41 @@ const eventSlice = createSlice({
                 (event) => event.name.toLowerCase().includes(action.payload.toLowerCase()),
             );
         },
+        setMessage: (state, action) => {
+            state.message = action.payload;
+        },
     },
     extraReducers: (builder) => {
         builder.addCase(getAllEvents.fulfilled, (state, action) => {
-            state.events = action.payload;
+            state.events = action.payload.data;
         });
         builder.addCase(getAllEvents.rejected, (state, action) => {
-            console.log(action.payload.response.data.message);
+            state.message = action.payload.response.data.message;
         });
         builder.addCase(createEvent.fulfilled, (state, action) => {
-            state.events.push(action.payload);
+            state.events.push(action.payload.data);
+            state.message = action.payload.message;
         });
         builder.addCase(createEvent.rejected, (state, action) => {
-            console.log(action.payload.response.data.message);
+            state.message = action.payload.response.data.message;
         });
         builder.addCase(deleteEventByID.fulfilled, (state, action) => {
-            state.events = state.events.filter((event) => event._id !== action.payload);
+            state.events = state.events.filter((event) => event._id !== action.payload.data);
+            state.message = action.payload.message;
         });
         builder.addCase(deleteEventByID.rejected, (state, action) => {
-            console.log(action.payload.response.data.message);
+            state.message = action.payload.response.data.message;
         });
         builder.addCase(filterEventByQuery.fulfilled, (state, action) => {
             state.events = action.payload;
         });
         builder.addCase(filterEventByQuery.rejected, (state, action) => {
-            console.log(action.payload.response.data.message);
+            state.message = action.payload.response.data.message;
         });
     },
 });
 
 export const eventSliceActions = {
-    getAllEvents, createEvent, deleteEventByID, filterEventByQuery,
+    getAllEvents, filterEventByQuery, createEvent, deleteEventByID, ...eventSlice.actions,
 };
 export default eventSlice.reducer;

@@ -5,6 +5,7 @@ import {
 import { useSelector } from 'react-redux';
 import { Toolbar } from '@mui/material';
 
+import Banner from 'components/banner/banner';
 import Home from 'pages/home/home';
 import Message from 'pages/message/message';
 import Login from 'pages/auth/login';
@@ -27,6 +28,7 @@ function AppRoutes() {
     return (
         <>
             <Toolbar />
+            <Banner />
             <Routes>
                 <Route path="/login" element={<Login />} />
                 <Route path="/sign-up" element={<SignUp />} />
