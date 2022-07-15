@@ -1,4 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import jwtDecode from 'jwt-decode';
+
 import AuthAPI from 'service/api/authApi';
 
 const loginUser = createAsyncThunk(
@@ -6,8 +8,8 @@ const loginUser = createAsyncThunk(
     async (input, thunkAPI) => {
         try {
             const { email, password } = input;
-            const data = await AuthAPI.loginUser(email, password);
-            return data;
+            const res = await AuthAPI.loginUser(email, password);
+            return res.data;
         } catch (e) {
             return thunkAPI.rejectWithValue(e);
         }
@@ -19,9 +21,10 @@ const signupUser = createAsyncThunk(
     async (input, thunkAPI) => {
         try {
             const { name, email, password } = input;
-            const data = await AuthAPI.signupUser(name, email, password);
-            return data;
+            const res = await AuthAPI.signupUser(name, email, password);
+            return res.data;
         } catch (e) {
+            console.log(e);
             return thunkAPI.rejectWithValue(e);
         }
     },
@@ -34,39 +37,39 @@ const authSlice = createSlice({
         isSignningUp: false,
         name: '',
         email: '',
-        profiles: [],
+        message: '',
     },
     reducers: {
-        createProfile: (state, action) => {
-            state.profiles.push(action.payload);
-        },
-        editProfile: (state, action) => {
-            const index = state.profiles.findIndex((el) => el.username === action.payload.username);
-            state.profiles[index] = action.payload;
-        },
         logout: (state, action) => {
             state.isLoggedIn = false;
+            state.message = `see you again ${state.name}`;
             state.name = '';
             state.email = '';
         },
         setIsSignningUp: (state, action) => {
             state.isSignningUp = action.payload;
         },
+        setMessage: (state, action) => {
+            state.message = action.payload;
+        },
     },
     extraReducers: (builder) => {
         builder.addCase(loginUser.fulfilled, (state, action) => {
             state.isLoggedIn = true;
-            state.name = action.name;
-            state.email = action.email;
+            const decodedData = jwtDecode(`${action.payload.data.tokenHeader}.${action.payload.data.tokenBody}`);
+            state.name = decodedData.name;
+            state.email = decodedData.email;
+            state.message = action.payload.message;
         });
         builder.addCase(loginUser.rejected, (state, action) => {
-            console.log('login failed', action.payload.response.data.message);
+            state.message = action.payload.response.data.message;
         });
         builder.addCase(signupUser.fulfilled, (state, action) => {
             state.isSignningUp = true;
+            state.message = action.payload.data.message;
         });
         builder.addCase(signupUser.rejected, (state, action) => {
-            console.log('signup failed', action.payload.response.data.message);
+            state.message = action.payload.response.data.message;
         });
     },
 });

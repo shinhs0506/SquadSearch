@@ -5,7 +5,6 @@ import useGetEvents from 'service/eventService';
 import EventCard from 'components/eventCard/eventCard';
 import './eventCardContainer.css';
 
-/* eslint-disable no-alert, no-console */
 export default function EventCardContainer() {
     const getAllEvents = useGetEvents();
     useEffect(() => {

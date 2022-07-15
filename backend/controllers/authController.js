@@ -18,7 +18,10 @@ const signupUser = async (req, res) => {
             email,
             password: hashedPassword,
         });
-        return res.send(user);
+        return res.send({
+            data: user,
+            message: `Successfully signed up with email ${email}`,
+        });
     }
 };
 
@@ -30,10 +33,16 @@ const loginUser = async (req, res) => {
 
         const isMatch = await bcrypt.compare(password, user.password);
         if (isMatch) {
-            const payload = { id: user.id, email: user.email };
+            const payload = { id: user.id, name: user.name, email: user.email };
             const token = jwt.sign(payload, 'secretKey', { expiresIn: '20d' });
             const tokenParts = token.split('.');
-            return res.send({ tokenHeader: tokenParts[0], tokenBody: tokenParts[1] });
+            return res.send({
+                data: {
+                    tokenHeader: tokenParts[0],
+                    tokenBody: tokenParts[1],
+                },
+                message: `Welcome back ${user.email}`,
+            });
         }
         return res.status(400).send({ message: 'Wrong password' });
     } catch (e) {
