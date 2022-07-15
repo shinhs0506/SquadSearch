@@ -6,6 +6,11 @@ class AuthAPI {
         return res;
     }
 
+    static async logoutUser(email) {
+        const res = await axios.post('/auth/logout', { email });
+        return res;
+    }
+
     static async signupUser(name, email, password) {
         const res = await axios.post('/auth/signup', { name, email, password });
         return res;

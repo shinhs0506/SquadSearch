@@ -71,21 +71,21 @@ const eventSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder.addCase(getAllEvents.fulfilled, (state, action) => {
-            state.events = action.payload.data;
+            state.events = action.payload;
         });
         builder.addCase(getAllEvents.rejected, (state, action) => {
             state.message = action.payload.response.data.message;
         });
         builder.addCase(createEvent.fulfilled, (state, action) => {
-            state.events.push(action.payload.data);
-            state.message = action.payload.message;
+            state.events.push(action.payload);
+            state.message = `Successfully created ${action.payload.name} event`;
         });
         builder.addCase(createEvent.rejected, (state, action) => {
             state.message = action.payload.response.data.message;
         });
         builder.addCase(deleteEventByID.fulfilled, (state, action) => {
-            state.events = state.events.filter((event) => event._id !== action.payload.data);
-            state.message = action.payload.message;
+            state.events = state.events.filter((event) => event._id !== action.payload);
+            state.message = 'Successsfully deleted an event';
         });
         builder.addCase(deleteEventByID.rejected, (state, action) => {
             state.message = action.payload.response.data.message;
