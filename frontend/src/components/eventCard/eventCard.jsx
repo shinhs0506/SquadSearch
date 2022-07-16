@@ -21,7 +21,10 @@ function EventCard(props) {
         <div className="container">
             <div className="card">
                 <div className="imgBx">
-                    <img src={src} alt="event" />
+                    <img
+                      src="https://i.scdn.co/image/ab6761610000e5ebcdce7620dc940db079bf4952"
+                      alt="event"
+                    />
                 </div>
                 <div className="contentBx">
                     <h2 className="name">{name}</h2>

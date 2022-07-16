@@ -47,9 +47,9 @@ function Navbar() {
         );
     }
 
-    return (
-        <div>
-            <AppBar sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
+    // return (
+    // <div>
+    { /* <AppBar sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
                 <Toolbar>
                     <Typography>SquardSearch</Typography>
                     <Typography>
@@ -59,9 +59,11 @@ function Navbar() {
                         <Link to="/sign-up"> Sign Up </Link>
                     </Typography>
                 </Toolbar>
-            </AppBar>
-        </div>
-    );
+            </AppBar> */ }
+    { /* </div> */ }
+    // );
+
+    return <></>;
 }
 
 export default Navbar;

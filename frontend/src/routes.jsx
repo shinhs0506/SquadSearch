@@ -15,6 +15,8 @@ import CreateEvent from 'pages/createEvent/createEvent';
 import Chatboard from 'pages/chatboard/chatboard';
 import EditProfile from 'pages/editProfile/editProfile';
 
+import Dashboard from 'pages/home/dashboard';
+
 function Guard() {
     const location = useLocation();
     const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
@@ -27,13 +29,14 @@ function Guard() {
 function AppRoutes() {
     return (
         <>
-            <Toolbar />
+            {/* <Toolbar /> */}
             <Banner />
             <Routes>
                 <Route path="/login" element={<Login />} />
                 <Route path="/sign-up" element={<SignUp />} />
 
                 <Route element={<Guard />}>
+                    {/* <Route path="/" element={<Dashboard />} /> */}
                     <Route path="/" element={<Home />} />
                     <Route path="/message" element={<Message />} />
                     <Route path="/create-event" element={<CreateEvent />} />
