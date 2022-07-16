@@ -42,8 +42,8 @@ export default function NewProfileForm() {
         <div>
             <h1>Create Profile</h1>
             <form
-                id="new_profile"
-                onSubmit={dispatchInput}
+              id="new_profile"
+              onSubmit={dispatchInput}
             >
                 <label htmlFor="username">
                     Username

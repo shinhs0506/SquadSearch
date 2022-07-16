@@ -12,7 +12,7 @@ import AssignmentIcon from '@mui/icons-material/Assignment';
 import { Link } from 'react-router-dom';
 
 export const mainListItems = (
-    <React.Fragment>
+    <>
         <ListItemButton>
             <Link to="/">
                 <ListItemIcon>
@@ -41,7 +41,7 @@ export const mainListItems = (
             </ListItemIcon>
             <ListItemText primary="Log out" />
         </ListItemButton>
-    </React.Fragment>
+    </>
 );
 
 // export const secondaryListItems = (

@@ -15,7 +15,6 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useDispatch } from 'react-redux';
 import { authSliceActions } from 'redux/slices/authSlice';
 
-
 const theme = createTheme();
 
 export default function SignUp() {
@@ -44,30 +43,30 @@ export default function SignUp() {
             <Container component="main" maxWidth="xs">
                 <CssBaseline />
                 <Box
-                    sx={{
-                        marginTop: 8,
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                    }}
+                  sx={{
+                      marginTop: 8,
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                  }}
                 >
                     <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
                         <LockOutlinedIcon />
                     </Avatar>
                     <Typography component="h1" variant="h5">
                         Sign up
-          </Typography>
+                    </Typography>
                     <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
                         <Grid container spacing={2}>
                             {/* <Grid item xs={12}>/ */}
                             <TextField
-                                autoComplete="given-name"
-                                name="firstName"
-                                required
-                                fullWidth
-                                id="firstName"
-                                label="Username"
-                                autoFocus
+                              autoComplete="given-name"
+                              name="firstName"
+                              required
+                              fullWidth
+                              id="firstName"
+                              label="Username"
+                              autoFocus
                             />
                             {/* </Grid> */}
                             {/* <Grid item xs={12} sm={6}>
@@ -83,38 +82,38 @@ export default function SignUp() {
                             {/* <Grid item xs={12}> */}
                             {/* // need to add back the email reg rules */}
                             <TextField
-                                required
-                                fullWidth
-                                id="email"
-                                label="Email Address"
-                                name="email"
-                                autoComplete="email"
+                              required
+                              fullWidth
+                              id="email"
+                              label="Email Address"
+                              name="email"
+                              autoComplete="email"
                             />
                             {/* </Grid> */}
                             {/* <Grid item xs={12}> */}
                             <TextField
-                                required
-                                fullWidth
-                                name="password"
-                                label="Password"
-                                type="password"
-                                id="password"
-                                autoComplete="new-password"
+                              required
+                              fullWidth
+                              name="password"
+                              label="Password"
+                              type="password"
+                              id="password"
+                              autoComplete="new-password"
                             />
                             {/* </Grid> */}
                             <Button
-                                type="submit"
-                                fullWidth
-                                variant="contained"
-                                sx={{ mt: 3, mb: 2 }}
+                              type="submit"
+                              fullWidth
+                              variant="contained"
+                              sx={{ mt: 3, mb: 2 }}
                             >
                                 Sign Up
-            </Button>
+                            </Button>
                             <Grid container justifyContent="flex-end">
                                 <Grid item>
                                     <Link href="/login" variant="body2">
                                         Already have an account? Sign in
-                </Link>
+                                    </Link>
                                 </Grid>
                             </Grid>
                         </Grid>

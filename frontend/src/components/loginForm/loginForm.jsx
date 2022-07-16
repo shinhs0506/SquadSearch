@@ -2,7 +2,7 @@ import { React, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import TextField from '@mui/material/TextField';
 import { authSliceActions } from 'redux/slices/authSlice';
-import SignInSIde from './SignInSide'
+import SignInSIde from './SignInSide';
 
 function LoginForm() {
     const dispatch = useDispatch();
@@ -26,8 +26,8 @@ function LoginForm() {
         <div>
             <h1>Login</h1>
             <form
-                id="new_profile"
-                onSubmit={dispatchInput}
+              id="new_profile"
+              onSubmit={dispatchInput}
             >
                 <TextField />
                 <label htmlFor="email">
