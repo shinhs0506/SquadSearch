@@ -1,3 +1,4 @@
+import { Toolbar } from '@mui/material';
 import Messages from 'pages/message/message';
 import React, { useEffect, useState } from 'react';
 import socketIOClient from 'socket.io-client';
@@ -18,6 +19,7 @@ export default function individualMessage() {
     }, [socket]);
     return (
         <div>
+            <Toolbar />
             <div className="container">
                 <input
                   placeholder="message in chat"
