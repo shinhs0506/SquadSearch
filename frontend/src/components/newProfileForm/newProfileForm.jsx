@@ -42,8 +42,8 @@ export default function NewProfileForm() {
         <div>
             <h1>Create Profile</h1>
             <form
-              id="new_profile"
-              onSubmit={dispatchInput}
+                id="new_profile"
+                onSubmit={dispatchInput}
             >
                 <label htmlFor="username">
                     Username
@@ -59,59 +59,6 @@ export default function NewProfileForm() {
                     Password
                     <input type="password" id="password" name="password" ref={profilePassword} required />
                 </label>
-                {/*
-                <br />
-                <label htmlFor="confirm_password">
-                    Confirm Password
-                    <input
-                        type="password"
-                        id="confirm_password"
-                        name="confirm_password"
-                        ref={profileConfirm}
-                        required
-                    />
-                </label>
-                <br />
-                */}
-                {/*
-                <label htmlFor="display_name">
-                    Display Name
-                    <input
-                        type="text"
-                        id="display_name"
-                        name="display_name"
-                        ref={profileDname}
-                        required
-                    />
-                </label>
-                <br />
-                */}
-                {/*
-                <label htmlFor="phone_number">
-                    Phone Number
-                    <input
-                        type="tel"
-                        pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                        name="phone_number"
-                        ref={profileNum}
-                    />
-                </label>
-                <br />
-                */}
-                {/*
-                <label htmlFor="profile_pic">
-                    Profile Picture
-                    <input type="file" id="profile_pic" name="profile_pic" ref={profilePic} />
-                </label>
-                <br />
-                */}
-                {/*
-                <label htmlFor="bio">
-                    Bio
-                    <textarea id="bio" name="bio" rows="4" cols="30" ref={profileBio} />
-                </label>
-                <br />
-                */}
                 <input type="submit" value="Submit" id="submitButton" />
             </form>
         </div>

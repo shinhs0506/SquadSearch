@@ -28,9 +28,9 @@ function Navbar() {
                         <Typography>
                             <Link to="/message">
                                 <img
-                                  src="https://i.pinimg.com/originals/e7/31/5f/e7315f2424c3248b0fe1f3cedf2802df.jpg"
-                                  alt="messages"
-                                  width="30px"
+                                    src="https://i.pinimg.com/originals/e7/31/5f/e7315f2424c3248b0fe1f3cedf2802df.jpg"
+                                    alt="messages"
+                                    width="30px"
                                 />
                             </Link>
                         </Typography>
@@ -47,9 +47,9 @@ function Navbar() {
         );
     }
 
-    return (
-        <div>
-            <AppBar sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
+    // return (
+    // <div>
+    {/* <AppBar sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
                 <Toolbar>
                     <Typography>SquardSearch</Typography>
                     <Typography>
@@ -59,9 +59,11 @@ function Navbar() {
                         <Link to="/sign-up"> Sign Up </Link>
                     </Typography>
                 </Toolbar>
-            </AppBar>
-        </div>
-    );
+            </AppBar> */}
+    {/* </div> */ }
+    // );
+
+    return <></>;
 }
 
 export default Navbar;
