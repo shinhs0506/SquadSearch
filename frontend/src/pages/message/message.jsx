@@ -3,7 +3,7 @@ import { Box } from '@mui/material';
 
 import Sidebar from 'components/sidebars/sidebar';
 import IndividualMessage from 'components/messages/individualMessage';
-import ContactsContainer from 'components/messages/contactsContainer';
+// import ContactsContainer from 'components/messages/contactsContainer';
 
 export default function Messages() {
     return (
@@ -12,7 +12,7 @@ export default function Messages() {
                 <h2> Message Sidebar </h2>
             </Sidebar>
             <Box component="main">
-                <ContactsContainer />
+                {/* <ContactsContainer /> */}
                 <IndividualMessage />
             </Box>
         </Box>
