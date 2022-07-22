@@ -43,7 +43,7 @@ function Navbar() {
         );
     }
 
-    return <div></div>;
+    return null;
 }
 
 export default Navbar;
