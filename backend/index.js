@@ -4,11 +4,10 @@ import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import passport from 'passport';
 
+import { Server } from 'socket.io';
+import { createServer } from 'http';
 import router from './router.js';
 import applyPassportStrategy from './passport.js';
-
-import {Server} from "socket.io";
-import {createServer} from 'http';
 
 const app = express();
 app.use(cors());
@@ -19,7 +18,7 @@ app.use(bodyParser.json());
 mongoose.connect('mongodb://localhost/cpsc455-SquadSearch', {});
 const { connection } = mongoose;
 connection.once('open', () => {
-    console.log('connected to mongo database')
+    console.log('connected to mongo database');
 });
 
 // passport middleware
@@ -38,17 +37,15 @@ app.listen(port, () => {
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
     cors: {
-        origin: 'http://localhost:3000'
-    }
+        origin: 'http://localhost:3000',
+    },
 });
 
 io.on('connection', (socket) => {
     console.log('server side');
     socket.on('send_message', (data) => {
-        socket.broadcast.emit('receive_message', data)
+        socket.broadcast.emit('receive_message', data);
     });
-  });
-
-
+});
 
 httpServer.listen(port);
