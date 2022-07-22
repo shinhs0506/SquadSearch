@@ -91,11 +91,11 @@ function DashboardContent() {
                     }
                     >
                         <IconButton
-                            edge="start"
-                            color="inherit"
-                            aria-label="open drawer"
-                            onClick={toggleDrawer}
-                            sx={
+                          edge="start"
+                          color="inherit"
+                          aria-label="open drawer"
+                          onClick={toggleDrawer}
+                          sx={
                                 {
                                     marginRight: '36px',
                                     ...(open && { display: 'none' }),
@@ -105,11 +105,11 @@ function DashboardContent() {
                             <MenuIcon />
                         </IconButton>
                         <Typography
-                            component="h1"
-                            variant="h6"
-                            color="inherit"
-                            noWrap
-                            sx={{ flexGrow: 1 }}
+                          component="h1"
+                          variant="h6"
+                          color="inherit"
+                          noWrap
+                          sx={{ flexGrow: 1 }}
                         >
                             Dashboard
                         </Typography>
@@ -122,7 +122,7 @@ function DashboardContent() {
                 </AppBar>
                 <Drawer variant="permanent" open={open}>
                     <Toolbar
-                        sx={
+                      sx={
                             {
                                 display: 'flex',
                                 alignItems: 'center',
@@ -143,8 +143,8 @@ function DashboardContent() {
                     </List>
                 </Drawer>
                 <Box
-                    component="main"
-                    sx={{
+                  component="main"
+                  sx={{
                         backgroundColor: (theme) => (theme.palette.mode === 'light'
                             ? theme.palette.grey[100]
                             : theme.palette.grey[900]),

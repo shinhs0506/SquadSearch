@@ -42,11 +42,11 @@ export default function SignInSide() {
             <Grid container component="main" sx={{ height: '100vh' }}>
                 <CssBaseline />
                 <Grid
-                    item
-                    xs={false}
-                    sm={4}
-                    md={7}
-                    sx={
+                  item
+                  xs={false}
+                  sm={4}
+                  md={7}
+                  sx={
                         {
                             backgroundImage: 'url(https://upload.wikimedia.org/wikipedia/commons/3/32/Wikipedia_space_ibiza%2803%29.jpg)',
                             backgroundRepeat: 'no-repeat',

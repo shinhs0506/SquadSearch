@@ -37,10 +37,7 @@ function EventCard(props) {
                         <button type="button">Join Now</button>
                     </Link>
 
-                    <button
-                        type="button"
-                        onClick={handleDelete}
-                    >
+                    <button type="button" onClick={handleDelete}>
                         Delete
                     </button>
                 </div>
