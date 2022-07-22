@@ -84,20 +84,23 @@ function DashboardContent() {
             <Box sx={{ display: 'flex' }}>
                 <CssBaseline />
                 <AppBar position="absolute" open={open}>
-                    <Toolbar
-                        sx={{
+                    <Toolbar sx={
+                        {
                             pr: '24px', // keep right padding when drawer closed
-                        }}
+                        }
+                    }
                     >
                         <IconButton
                             edge="start"
                             color="inherit"
                             aria-label="open drawer"
                             onClick={toggleDrawer}
-                            sx={{
-                                marginRight: '36px',
-                                ...(open && { display: 'none' }),
-                            }}
+                            sx={
+                                {
+                                    marginRight: '36px',
+                                    ...(open && { display: 'none' }),
+                                }
+                            }
                         >
                             <MenuIcon />
                         </IconButton>
@@ -119,12 +122,14 @@ function DashboardContent() {
                 </AppBar>
                 <Drawer variant="permanent" open={open}>
                     <Toolbar
-                        sx={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'flex-end',
-                            px: [1],
-                        }}
+                        sx={
+                            {
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'flex-end',
+                                px: [1],
+                            }
+                        }
                     >
                         <IconButton onClick={toggleDrawer}>
                             <ChevronLeftIcon />
