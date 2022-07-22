@@ -20,7 +20,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 
 import Searchbar from 'components/searchbar/searchbar';
 import EventCardContainer from 'components/eventCard/eventCardContainer';
-import { mainListItems, secondaryListItems } from './listItems';
+import { mainListItems } from './listItems';
 // import Chart from './Chart';
 // import Deposits from './Deposits';
 // import Orders from './Orders';
@@ -85,28 +85,28 @@ function DashboardContent() {
                 <CssBaseline />
                 <AppBar position="absolute" open={open}>
                     <Toolbar
-                      sx={{
-                          pr: '24px', // keep right padding when drawer closed
-                      }}
+                        sx={{
+                            pr: '24px', // keep right padding when drawer closed
+                        }}
                     >
                         <IconButton
-                          edge="start"
-                          color="inherit"
-                          aria-label="open drawer"
-                          onClick={toggleDrawer}
-                          sx={{
-                              marginRight: '36px',
-                              ...(open && { display: 'none' }),
-                          }}
+                            edge="start"
+                            color="inherit"
+                            aria-label="open drawer"
+                            onClick={toggleDrawer}
+                            sx={{
+                                marginRight: '36px',
+                                ...(open && { display: 'none' }),
+                            }}
                         >
                             <MenuIcon />
                         </IconButton>
                         <Typography
-                          component="h1"
-                          variant="h6"
-                          color="inherit"
-                          noWrap
-                          sx={{ flexGrow: 1 }}
+                            component="h1"
+                            variant="h6"
+                            color="inherit"
+                            noWrap
+                            sx={{ flexGrow: 1 }}
                         >
                             Dashboard
                         </Typography>
@@ -119,12 +119,12 @@ function DashboardContent() {
                 </AppBar>
                 <Drawer variant="permanent" open={open}>
                     <Toolbar
-                      sx={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'flex-end',
-                          px: [1],
-                      }}
+                        sx={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'flex-end',
+                            px: [1],
+                        }}
                     >
                         <IconButton onClick={toggleDrawer}>
                             <ChevronLeftIcon />
@@ -138,15 +138,15 @@ function DashboardContent() {
                     </List>
                 </Drawer>
                 <Box
-                  component="main"
-                  sx={{
-                      backgroundColor: (theme) => (theme.palette.mode === 'light'
-                          ? theme.palette.grey[100]
-                          : theme.palette.grey[900]),
-                      flexGrow: 1,
-                      height: '100vh',
-                      overflow: 'auto',
-                  }}
+                    component="main"
+                    sx={{
+                        backgroundColor: (theme) => (theme.palette.mode === 'light'
+                            ? theme.palette.grey[100]
+                            : theme.palette.grey[900]),
+                        flexGrow: 1,
+                        height: '100vh',
+                        overflow: 'auto',
+                    }}
                 >
                     <Toolbar />
                     <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
