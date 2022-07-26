@@ -55,6 +55,11 @@ const authSlice = createSlice({
         setIsSignningUp: (state, action) => {
             state.isSignningUp = action.payload;
         },
+        setLoginWithToken: (state, action) => {
+            state.name = action.name;
+            state.email = action.payload.email;
+            state.isLoggedIn = true;
+        },
         setMessage: (state, action) => {
             state.message = action.payload;
         },
@@ -66,6 +71,8 @@ const authSlice = createSlice({
             state.name = decodedData.name;
             state.email = decodedData.email;
             state.message = `Welcome back ${state.name}`;
+            localStorage.setItem('tokenHeader', action.payload.tokenHeader);
+            localStorage.setItem('tokenBody', action.payload.tokenBody);
         });
         builder.addCase(loginUser.rejected, (state, action) => {
             state.message = action.payload.response.data.message;
@@ -83,6 +90,8 @@ const authSlice = createSlice({
             state.isLoggedIn = false;
             state.name = '';
             state.email = '';
+            localStorage.removeItem('tokenHeader');
+            localStorage.removeItem('tokenBody');
         });
         builder.addCase(logoutUser.rejected, (state, action) => {
             state.message = action.payload.response.data.message;

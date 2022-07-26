@@ -1,4 +1,6 @@
+import { useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import jwtDecode from 'jwt-decode';
 
 import { authSliceActions } from 'redux/slices/authSlice';
 
@@ -13,4 +15,26 @@ const useLogout = () => {
     return logout;
 };
 
-export default useLogout;
+const useCheckLogin = () => {
+    const dispatch = useDispatch();
+    const tokenHeader = localStorage.getItem('tokenHeader');
+    const tokenBody = localStorage.getItem('tokenBody');
+
+    const checkLogin = () => {
+        if (tokenHeader && tokenBody) {
+            const decodedData = jwtDecode(`${tokenHeader}.${tokenBody}`);
+            const { name, email, exp } = decodedData;
+            if (Date.now() >= exp * 1000) {
+
+            } else {
+                dispatch(authSliceActions.setLoginWithToken({ name, email}))
+            }
+        }
+    }
+
+    useEffect(() => {
+        checkLogin()
+    }, [])
+}
+
+export { useLogout, useCheckLogin };
