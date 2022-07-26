@@ -6,7 +6,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { Button } from '@mui/material';
 
-import useLogout from 'service/authService';
+import { useLogout } from 'service/authService';
 
 function Navbar() {
     const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
