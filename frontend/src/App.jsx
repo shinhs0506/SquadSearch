@@ -5,8 +5,8 @@ import { useCheckLogin } from 'service/authService';
 import './App.css';
 
 function App() {
-    useCheckLogin()
-    
+    useCheckLogin();
+
     return (
         <div className="App">
             <Navbar />
