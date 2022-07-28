@@ -25,12 +25,16 @@ const signupUser = async (req, res) => {
 const loginUser = async (req, res) => {
     const { email, password } = req.body;
 
+    console.log(email, password);
+
     try {
         const user = await User.findOne({ email }).orFail();
 
         const isMatch = await bcrypt.compare(password, user.password);
         if (isMatch) {
-            const payload = { id: user.id, name: user.name, email: user.email };
+            const payload = {
+                user: user.toObject(),
+            };
             const token = jwt.sign(payload, 'secretKey', { expiresIn: '20d' });
             const tokenParts = token.split('.');
             return res.send({
@@ -45,7 +49,7 @@ const loginUser = async (req, res) => {
 };
 
 const logoutUser = async (req, res) => {
-    const { email } = req.body;
+    const { email } = req.params;
 
     try {
         const user = await User.findOne({ email }).orFail();
@@ -55,4 +59,44 @@ const logoutUser = async (req, res) => {
     }
 };
 
-export default { signupUser, loginUser, logoutUser };
+const updateUser = async (req, res) => {
+    const { email } = req.params;
+    const { name, password, bio } = req.body;
+    const profilePicture = req.file;
+
+    try {
+        const update = {};
+
+        if (name) {
+            update.name = name;
+        }
+        if (password) {
+            const salt = await bcrypt.genSalt(10);
+            const hashedPassword = await bcrypt.hash(password, salt);
+            update.password = hashedPassword;
+        }
+        if (profilePicture && Object.keys(profilePicture).length !== 0) {
+            update.profilePicture = profilePicture.buffer.toString('base64');
+        }
+        if (bio) {
+            update.bio = bio;
+        }
+
+        const user = await User.findOneAndUpdate({ email }, update, { new: true }).orFail();
+        const payload = {
+            user: user.toObject(),
+        };
+        const token = jwt.sign(payload, 'secretKey', { expiresIn: '20d' });
+        const tokenParts = token.split('.');
+        return res.send({
+            tokenHeader: tokenParts[0],
+            tokenBody: tokenParts[1],
+        });
+    } catch (e) {
+        return res.status(400).send({ message: 'Error while updating user' });
+    }
+};
+
+export default {
+    signupUser, loginUser, logoutUser, updateUser,
+};

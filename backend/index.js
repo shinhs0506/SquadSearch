@@ -1,4 +1,5 @@
 import express from 'express';
+import multer from 'multer';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
@@ -9,10 +10,13 @@ import { createServer } from 'http';
 import router from './router.js';
 import applyPassportStrategy from './passport.js';
 
+const upload = multer({});
+
 const app = express();
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(upload.single('profilePicture'));
 
 // mongodb
 mongoose.connect('mongodb://localhost/cpsc455-SquadSearch', {});
