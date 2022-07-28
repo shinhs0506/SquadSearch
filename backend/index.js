@@ -3,7 +3,6 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import passport from 'passport';
-
 import router from './router.js';
 import applyPassportStrategy from './passport.js';
 
@@ -44,11 +43,12 @@ const io = new Server(httpServer, {
 
 io.on('connection', (socket) => {
     console.log('server side');
+    socket.on("join", async (roomId) => {});
+    socket.on("message", (message) => {});
     socket.on('send_message', (data) => {
         socket.broadcast.emit('receive_message', data)
     });
   });
-
 
 
 httpServer.listen(port);
