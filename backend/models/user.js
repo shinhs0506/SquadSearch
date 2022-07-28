@@ -14,7 +14,7 @@ const UserSchema = new mongoose.Schema({
         required: true,
     },
     profilePicture: {
-        binData: Buffer,
+        type: Buffer,
         required: false,
     },
     bio: {
@@ -22,6 +22,17 @@ const UserSchema = new mongoose.Schema({
         required: false,
     },
 });
+
+UserSchema.set('toJSON', {
+    virtuals: true,
+    versionKey: false,
+    transform: function (doc, ret) {
+        const base64 = doc.profilePicture.toString('base64');
+        ret.data = base64;
+
+        return ret;
+    }
+})
 
 const User = mongoose.model('User', UserSchema);
 export default User;

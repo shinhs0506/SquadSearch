@@ -1,5 +1,6 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import AvatarGenerator from 'avatar-generator'; 
 
 import User from '../models/user.js';
 
@@ -13,10 +14,16 @@ const signupUser = async (req, res) => {
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
 
+        const avatar = new AvatarGenerator();
+        const image = await avatar.generate(email, 'male');
+        const imageBuffer = await image.resize(100, 100).png().toBuffer();
+
         const user = await User.create({
             name,
             email,
             password: hashedPassword,
+            profilePicture: imageBuffer,
+            bio: 'random bio'
         });
         return res.send(user);
     }
@@ -24,8 +31,6 @@ const signupUser = async (req, res) => {
 
 const loginUser = async (req, res) => {
     const { email, password } = req.body;
-
-    console.log(email, password);
 
     try {
         const user = await User.findOne({ email }).orFail();
@@ -76,7 +81,7 @@ const updateUser = async (req, res) => {
             update.password = hashedPassword;
         }
         if (profilePicture && Object.keys(profilePicture).length !== 0) {
-            update.profilePicture = profilePicture.buffer.toString('base64');
+            update.profilePicture = profilePicture.buffer;
         }
         if (bio) {
             update.bio = bio;
