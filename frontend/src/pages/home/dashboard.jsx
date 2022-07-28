@@ -20,7 +20,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 
 import Searchbar from 'components/searchbar/searchbar';
 import EventCardContainer from 'components/eventCard/eventCardContainer';
-import { mainListItems, secondaryListItems } from './listItems';
+import { mainListItems } from './listItems';
 // import Chart from './Chart';
 // import Deposits from './Deposits';
 // import Orders from './Orders';
@@ -84,20 +84,23 @@ function DashboardContent() {
             <Box sx={{ display: 'flex' }}>
                 <CssBaseline />
                 <AppBar position="absolute" open={open}>
-                    <Toolbar
-                      sx={{
-                          pr: '24px', // keep right padding when drawer closed
-                      }}
+                    <Toolbar sx={
+                        {
+                            pr: '24px', // keep right padding when drawer closed
+                        }
+                    }
                     >
                         <IconButton
                           edge="start"
                           color="inherit"
                           aria-label="open drawer"
                           onClick={toggleDrawer}
-                          sx={{
-                              marginRight: '36px',
-                              ...(open && { display: 'none' }),
-                          }}
+                          sx={
+                                {
+                                    marginRight: '36px',
+                                    ...(open && { display: 'none' }),
+                                }
+                            }
                         >
                             <MenuIcon />
                         </IconButton>
@@ -119,12 +122,14 @@ function DashboardContent() {
                 </AppBar>
                 <Drawer variant="permanent" open={open}>
                     <Toolbar
-                      sx={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'flex-end',
-                          px: [1],
-                      }}
+                      sx={
+                            {
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'flex-end',
+                                px: [1],
+                            }
+                        }
                     >
                         <IconButton onClick={toggleDrawer}>
                             <ChevronLeftIcon />

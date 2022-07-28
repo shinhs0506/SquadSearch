@@ -6,7 +6,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { Button } from '@mui/material';
 
-import useLogout from 'service/authService';
+import { useLogout } from 'service/authService';
 
 function Navbar() {
     const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
@@ -27,11 +27,7 @@ function Navbar() {
                         </Typography>
                         <Typography>
                             <Link to="/message">
-                                <img
-                                  src="https://i.pinimg.com/originals/e7/31/5f/e7315f2424c3248b0fe1f3cedf2802df.jpg"
-                                  alt="messages"
-                                  width="30px"
-                                />
+                                <img src="https://i.pinimg.com/originals/e7/31/5f/e7315f2424c3248b0fe1f3cedf2802df.jpg" alt="messages" width="30px" />
                             </Link>
                         </Typography>
                         <Typography>
@@ -47,23 +43,7 @@ function Navbar() {
         );
     }
 
-    // return (
-    // <div>
-    { /* <AppBar sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
-                <Toolbar>
-                    <Typography>SquardSearch</Typography>
-                    <Typography>
-                        <Link to="/login"> Log in </Link>
-                    </Typography>
-                    <Typography>
-                        <Link to="/sign-up"> Sign Up </Link>
-                    </Typography>
-                </Toolbar>
-            </AppBar> */ }
-    { /* </div> */ }
-    // );
-
-    return <></>;
+    return null;
 }
 
 export default Navbar;
