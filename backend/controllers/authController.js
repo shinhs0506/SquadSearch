@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import AvatarGenerator from 'avatar-generator'; 
+import AvatarGenerator from 'avatar-generator';
 
 import User from '../models/user.js';
 
@@ -23,7 +23,7 @@ const signupUser = async (req, res) => {
             email,
             password: hashedPassword,
             profilePicture: imageBuffer,
-            bio: 'random bio'
+            bio: 'random bio',
         });
         return res.send(user);
     }

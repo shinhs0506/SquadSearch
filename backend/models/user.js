@@ -26,13 +26,14 @@ const UserSchema = new mongoose.Schema({
 UserSchema.set('toJSON', {
     virtuals: true,
     versionKey: false,
-    transform: function (doc, ret) {
+    transform(doc, ret) {
         const base64 = doc.profilePicture.toString('base64');
-        ret.data = base64;
+        const res = ret;
+        res.data = base64;
 
-        return ret;
-    }
-})
+        return res;
+    },
+});
 
 const User = mongoose.model('User', UserSchema);
 export default User;
