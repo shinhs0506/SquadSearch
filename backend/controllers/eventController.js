@@ -55,8 +55,6 @@ const joinEvent = async (req, res) => {
     const { id } = req.params;
     const { email } = req.body;
 
-    console.log(email);
-
     try {
         const user = await User.findOne({ email }).orFail();
         const event = await Event.findByIdAndUpdate(id, {
