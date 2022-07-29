@@ -6,10 +6,14 @@ import { authSliceActions } from 'redux/slices/authSlice';
 
 const useLogout = () => {
     const dispatch = useDispatch();
-    const email = useSelector((state) => state.auth.email);
+    const { user } = useSelector((state) => state.auth);
 
     const logout = async () => {
-        dispatch(authSliceActions.logoutUser({ email }));
+        if (user) {
+            console.log(user);
+            const { email } = user;
+            dispatch(authSliceActions.logoutUser({ email }));
+        }
     };
 
     return logout;
@@ -23,9 +27,9 @@ const useCheckLogin = () => {
     const checkLogin = () => {
         if (tokenHeader && tokenBody) {
             const decodedData = jwtDecode(`${tokenHeader}.${tokenBody}`);
-            const { name, email, exp } = decodedData;
+            const { user, exp } = decodedData;
             if (!(Date.now() >= exp * 1000)) {
-                dispatch(authSliceActions.setLoginWithToken({ name, email }));
+                dispatch(authSliceActions.setLoginWithToken(user));
             }
         }
     };
