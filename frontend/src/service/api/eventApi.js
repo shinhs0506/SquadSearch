@@ -34,6 +34,11 @@ class EventAPI {
         const res = await axios.post(`/event/${id}/leave`, { email });
         return res;
     }
+
+    static async getProfilePictures(id) {
+        const res = await axios.get(`/event/${id}/profilePictures`);
+        return res;
+    }
 }
 
 export default EventAPI;

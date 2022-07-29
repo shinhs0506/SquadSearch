@@ -17,5 +17,6 @@ router.post('/api/events', eventController.createEvent);
 router.delete('/api/event/:id', eventController.deleteEventByID);
 router.post('/api/event/:id/join', eventController.joinEvent);
 router.post('/api/event/:id/leave', eventController.leaveEvent);
+router.get('/api/event/:id/profilePictures', eventController.getProfilePictures);
 
 export default router;

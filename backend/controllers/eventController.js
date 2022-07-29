@@ -87,6 +87,20 @@ const leaveEvent = async (req, res) => {
     }
 };
 
+const getProfilePictures = async (req, res) => {
+    const { id } = req.params;
+
+    Event.findById(id).then((event) => User.find({ _id: { $in: event.joinedUsers } })).catch(() => res.status(500).send({ message: 'Error occured finding event' })).then((users) => users.map((user) => user.profilePicture.toString('base64')))
+        .then((pictures) => res.send(pictures))
+        .catch(() => res.status(500).send({ message: 'Error occured finding event' }));
+};
+
 export default {
-    getAllEvents, getAllEventsContainingName, createEvent, deleteEventByID, joinEvent, leaveEvent,
+    getAllEvents,
+    getAllEventsContainingName,
+    createEvent,
+    deleteEventByID,
+    joinEvent,
+    leaveEvent,
+    getProfilePictures,
 };
