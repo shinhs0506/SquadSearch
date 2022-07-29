@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { eventSliceActions } from 'redux/slices/eventSlice';
 import { Link } from 'react-router-dom';
 
@@ -11,7 +11,12 @@ function EventCard(props) {
     const {
         _id, name, location, date, src,
     } = props;
+    const { email } = useSelector((state) => state.auth.user);
     const dispatch = useDispatch();
+
+    function handleJoin() {
+        dispatch(eventSliceActions.joinEvent({ _id, email }));
+    }
 
     function handleDelete() {
         dispatch(eventSliceActions.deleteEventByID({ _id }));
@@ -33,8 +38,11 @@ function EventCard(props) {
                         <h3>Location :</h3>
                         <span>{location}</span>
                     </div>
-                    <Link to="/chatboard">
-                        <button type="button">Join Now</button>
+                    <Link
+                      to="/chatboard"
+                      state={{ _id }}
+                    >
+                        <button type="button" onClick={handleJoin}>Join Now</button>
                     </Link>
 
                     <button type="button" onClick={handleDelete}>
