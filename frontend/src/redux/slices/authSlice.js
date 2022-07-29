@@ -42,13 +42,29 @@ const signupUser = createAsyncThunk(
     },
 );
 
+const updateUser = createAsyncThunk(
+    'auth/update',
+    async (input, thunkAPI) => {
+        try {
+            const { email, body } = input;
+            const name = body.get('name');
+            const password = body.get('password');
+            const profilePicture = body.get('profilePicture');
+            const bio = body.get('bio');
+            const res = await AuthAPI.updateUser(email, name, password, profilePicture, bio);
+            return res.data;
+        } catch (e) {
+            return thunkAPI.rejectWithValue(e);
+        }
+    },
+);
+
 const authSlice = createSlice({
     name: 'authSlice',
     initialState: {
         isLoggedIn: false,
         isSignningUp: false,
-        name: '',
-        email: '',
+        user: null,
         message: '',
     },
     reducers: {
@@ -56,8 +72,7 @@ const authSlice = createSlice({
             state.isSignningUp = action.payload;
         },
         setLoginWithToken: (state, action) => {
-            state.name = action.name;
-            state.email = action.payload.email;
+            state.user = action.payload;
             state.isLoggedIn = true;
         },
         setMessage: (state, action) => {
@@ -68,8 +83,7 @@ const authSlice = createSlice({
         builder.addCase(loginUser.fulfilled, (state, action) => {
             state.isLoggedIn = true;
             const decodedData = jwtDecode(`${action.payload.tokenHeader}.${action.payload.tokenBody}`);
-            state.name = decodedData.name;
-            state.email = decodedData.email;
+            state.user = decodedData.user;
             state.message = `Welcome back ${state.name}`;
             localStorage.setItem('tokenHeader', action.payload.tokenHeader);
             localStorage.setItem('tokenBody', action.payload.tokenBody);
@@ -88,18 +102,27 @@ const authSlice = createSlice({
             state.isSignningUp = true;
             state.message = `see you again ${state.name}`;
             state.isLoggedIn = false;
-            state.name = '';
-            state.email = '';
+            state.user = null;
             localStorage.removeItem('tokenHeader');
             localStorage.removeItem('tokenBody');
         });
         builder.addCase(logoutUser.rejected, (state, action) => {
             state.message = action.payload.response.data.message;
         });
+        builder.addCase(updateUser.fulfilled, (state, action) => {
+            const decodedData = jwtDecode(`${action.payload.tokenHeader}.${action.payload.tokenBody}`);
+            state.user = decodedData.user;
+            state.message = 'successfully updated name';
+            localStorage.setItem('tokenHeader', action.payload.tokenHeader);
+            localStorage.setItem('tokenBody', action.payload.tokenBody);
+        });
+        builder.addCase(updateUser.rejected, (state, action) => {
+            state.message = action.payload.response.data.message;
+        });
     },
 });
 
 export const authSliceActions = {
-    loginUser, signupUser, logoutUser, ...authSlice.actions,
+    loginUser, signupUser, logoutUser, updateUser, ...authSlice.actions,
 };
 export default authSlice.reducer;

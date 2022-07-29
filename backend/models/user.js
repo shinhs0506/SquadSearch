@@ -11,7 +11,27 @@ const UserSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        reqruied: true,
+        required: true,
+    },
+    profilePicture: {
+        type: Buffer,
+        required: false,
+    },
+    bio: {
+        type: String,
+        required: false,
+    },
+});
+
+UserSchema.set('toJSON', {
+    virtuals: true,
+    versionKey: false,
+    transform(doc, ret) {
+        const base64 = doc.profilePicture.toString('base64');
+        const res = ret;
+        res.data = base64;
+
+        return res;
     },
 });
 
