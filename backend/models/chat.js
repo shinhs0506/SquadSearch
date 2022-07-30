@@ -1,14 +1,15 @@
 import mongoose from 'mongoose';
 
-const ChatSchema = new mongoose.Schema({
-    name: {
-        type: String, 
-        required: true,
-    },
-    members: {
-        type: Array,
-        required: true,
-    },
+const ChatSchema = new mongoose.Schema(
+    {
+        name: {
+            type: String,
+            required: true,
+        },
+        members: {
+            type: Array,
+            required: true,
+        },
     },
     { timestamps: true },
 );
