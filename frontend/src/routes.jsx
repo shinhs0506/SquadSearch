@@ -7,12 +7,11 @@ import { Toolbar } from '@mui/material';
 
 import Banner from 'components/banner/banner';
 import Home from 'pages/home/home';
-import Message from 'pages/message/message';
+import Chat from 'pages/chat/chat';
 import Login from 'pages/auth/login';
 import Logout from 'pages/auth/logout';
 import SignUp from 'pages/auth/signUp';
 import CreateEvent from 'pages/createEvent/createEvent';
-import Chatboard from 'pages/chatboard/chatboard';
 import EditProfile from 'pages/editProfile/editProfile';
 
 import Dashboard from 'pages/home/dashboard';
@@ -38,9 +37,8 @@ function AppRoutes() {
                 <Route element={<Guard />}>
                     {/* <Route path="/" element={<Dashboard />} /> */}
                     <Route path="/" element={<Home />} />
-                    <Route path="/message" element={<Message />} />
+                    <Route path="/chat" element={<Chat />} />
                     <Route path="/create-event" element={<CreateEvent />} />
-                    <Route path="/chatboard" element={<Chatboard />} />
                     <Route path="/edit-profile" element={<EditProfile />} />
                     <Route path="/logout" element={<Logout />} />
                 </Route>

@@ -1,5 +1,4 @@
 import { Toolbar } from '@mui/material';
-import Messages from 'pages/message/message';
 import React, { useEffect, useState } from 'react';
 import socketIOClient from 'socket.io-client';
 import './individualMessage.css';

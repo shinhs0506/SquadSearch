@@ -2,6 +2,7 @@ import express from 'express';
 
 import eventController from './controllers/eventController.js';
 import authController from './controllers/authController.js';
+import chatController from './controllers/chatController.js';
 import messageController from './controllers/messageController.js';
 
 const router = express.Router();
@@ -17,6 +18,12 @@ router.get('/api/events', eventController.getAllEvents);
 router.post('/api/events', eventController.createEvent);
 router.delete('/api/event/:id', eventController.deleteEventByID);
 
-router.get('/api/messages', messageController.getAllChats);
+// chat endpoints
+router.get('/api/chats/:userId', chatController.getAllChatsWithUser);
+router.post('/api/chats', chatController.createChat);
+
+//message endpoints
+router.get('/api/messages/:chatId', messageController.getMessagesByChatId);
+router.post('/api/messages', messageController.createMessage);
 
 export default router;

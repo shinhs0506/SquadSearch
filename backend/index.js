@@ -46,12 +46,13 @@ const io = new Server(httpServer, {
 });
 
 io.on('connection', (socket) => {
-    console.log('server side');
-    socket.on("join", async (roomId) => {});
-    socket.on("message", (message) => {});
     socket.on('send_message', (data) => {
-        socket.broadcast.emit('receive_message', data);
+        //socket.broadcast.emit('receive_message', data);
+        io.sockets.in(data.room).emit('receive_message', data);
     });
+    socket.on('join_room', (room) => {
+        socket.join(room);
+    })
 });
 
 httpServer.listen(port);
