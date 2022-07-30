@@ -1,7 +1,11 @@
 # SquadSearch
 
+Our app SquadSearch lets you find others who are interested in or attending the same events so that you can form a group of people to go with. Through different chat boards you are able to communicate with a wide range of audiences attending all sorts of events across the world. You will be able to chat with other users on the app through a variety of different chat options where you can get to know new people and set up a meeting.
+
 ## **Who is it for?**
 Anyone looking for a group of people to go to an event or activity with
+
+
 
 ## **What will it do? (What "human activity" will it support?)**
 Help people find and create groups for whatever activity they want (ex. Tennis partner, concert attendees, etc). People will be able to add events to our page and have others join where they are able to message in a chat board related to that event. Users are then able to form groups and get to know people by private messaging them in our chat feature. 
