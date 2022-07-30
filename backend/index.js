@@ -17,18 +17,18 @@ const upload = multer({});
 const app = express();
 
 const corsOptions = {
-    origin: ['https://cpsc455-squadsearch-frontend.herokuapp.com', 'http://localhost:3000']
-}
+    origin: ['https://cpsc455-squadsearch-frontend.herokuapp.com', 'http://localhost:3000'],
+};
 app.use(cors(corsOptions));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(upload.single('profilePicture'));
 
 // mongodb
-const  mongoURL = process.env.NODE_ENV || 'development'
+const mongoURL = process.env.NODE_ENV || 'development'
     ? 'mongodb://localhost/cpsc455-SquadSearch'
-    : 'mongodb+srv://squadsearch:squadsearch@cluster0.ostcb.mongodb.net/?retryWrites=true&w=majority'
-mongoose.connect(mongoURL, {dbName: 'cpsc455-squadsearch'});
+    : 'mongodb+srv://squadsearch:squadsearch@cluster0.ostcb.mongodb.net/?retryWrites=true&w=majority';
+mongoose.connect(mongoURL, { dbName: 'cpsc455-squadsearch' });
 const { connection } = mongoose;
 connection.once('open', () => {
     console.log('connected to mongo database');
@@ -49,7 +49,7 @@ app.listen(port, () => {
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
     cors: {
-        origin: ['https://cpsc455-squadsearch-frontend.herokuapp.com', 'http://localhost:3000']
+        origin: ['https://cpsc455-squadsearch-frontend.herokuapp.com', 'http://localhost:3000'],
     },
 });
 
