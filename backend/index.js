@@ -29,7 +29,7 @@ app.use(upload.single('profilePicture'));
 const mongoURL = (process.env.NODE_ENV || 'development') === 'development'
     ? 'mongodb://localhost'
     : 'mongodb+srv://squadsearch:squadsearch@cluster0.ostcb.mongodb.net/?retryWrites=true&w=majority';
-mongoose.connect(mongoURL, { dbName: 'cpsc455-squadsearch'});
+mongoose.connect(mongoURL, { dbName: 'cpsc455-squadsearch' });
 const { connection } = mongoose;
 connection.once('open', () => {
     console.log('connected to mongo database');
@@ -55,9 +55,12 @@ const io = new Server(httpServer, {
 });
 
 io.on('connection', (socket) => {
-    console.log('server side');
     socket.on('send_message', (data) => {
-        socket.broadcast.emit('receive_message', data);
+        // socket.broadcast.emit('receive_message', data);
+        io.sockets.in(data.room).emit('receive_message', data);
+    });
+    socket.on('join_room', (room) => {
+        socket.join(room);
     });
 });
 
