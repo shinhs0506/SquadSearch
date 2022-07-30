@@ -5,7 +5,7 @@ const baseURL = (!process.env.NODE_ENV || process.env.NODE_ENV === 'development'
     : 'https://cpsc455-squadsearch-backend.herokuapp.com/api';
 
 const axios = Axios.create({
-    baseURL,
+    baseURL: baseURL,
 });
 
 export default axios;
