@@ -1,0 +1,32 @@
+# Deploy
+
+name: Deploy
+on:
+  push:
+    branches: [ main ]
+
+env:
+  CI: false
+
+jobs:
+  backend-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.11.10
+        with:
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_app_name: "cpsc455-squadsearch-backend"
+          heroku_email: ${{ secrets.HEROKU_EMAIL }}
+          appdir: "backend"
+  frontend-deploy:
+    needs: backend-deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.11.10
+        with:
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_app_name: "cpsc455-squadsearch-frontend"
+          heroku_email: ${{ secrets.HEROKU_EMAIL }}
+          appdir: "frontend"
