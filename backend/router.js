@@ -25,7 +25,7 @@ router.get('/api/event/:id/profilePictures', eventController.getProfilePictures)
 router.get('/api/chats/:userId', chatController.getAllChatsWithUser);
 router.post('/api/chats', chatController.createChat);
 
-//message endpoints
+// message endpoints
 router.get('/api/messages/:chatId', messageController.getMessagesByChatId);
 router.post('/api/messages', messageController.createMessage);
 
