@@ -1,4 +1,5 @@
 import Event from '../models/event.js';
+import User from '../models/user.js';
 
 const getAllEvents = async (req, res) => {
     try {
@@ -46,10 +47,60 @@ const deleteEventByID = async (req, res) => {
         await Event.findByIdAndRemove(id);
         return res.send(id);
     } catch (e) {
-        return res.status(500).send({ message: 'Error occured while deleting an event, please try again' });
+        return res.status(500).send({ message: 'Error occured while deleting an event' });
     }
 };
 
+const joinEvent = async (req, res) => {
+    const { id } = req.params;
+    const { email } = req.body;
+
+    try {
+        const user = await User.findOne({ email }).orFail();
+        const event = await Event.findByIdAndUpdate(id, {
+            $addToSet: { joinedUsers: user },
+        }, {
+            new: true,
+        });
+        return res.send(event);
+    } catch (e) {
+        return res.status(500).send({ message: 'Error occured while joining an event' });
+    }
+};
+
+const leaveEvent = async (req, res) => {
+    const { id } = req.params;
+    const { email } = req.body;
+
+    try {
+        const user = await User.findOne({ email }).orFail();
+        const event = await Event.findByIdAndUpdate(id, {
+            $pullAll: {
+                joinedUsers: [user._id],
+            },
+        }, {
+            new: true,
+        });
+        return res.send(event);
+    } catch (e) {
+        return res.status(500).send({ message: 'Error occured while leaving an event' });
+    }
+};
+
+const getProfilePictures = async (req, res) => {
+    const { id } = req.params;
+
+    Event.findById(id).then((event) => User.find({ _id: { $in: event.joinedUsers } })).catch(() => res.status(500).send({ message: 'Error occured finding event' })).then((users) => users.map((user) => user.profilePicture.toString('base64')))
+        .then((pictures) => res.send(pictures))
+        .catch(() => res.status(500).send({ message: 'Error occured finding event' }));
+};
+
 export default {
-    getAllEvents, getAllEventsContainingName, createEvent, deleteEventByID,
+    getAllEvents,
+    getAllEventsContainingName,
+    createEvent,
+    deleteEventByID,
+    joinEvent,
+    leaveEvent,
+    getProfilePictures,
 };

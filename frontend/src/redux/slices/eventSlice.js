@@ -53,6 +53,32 @@ const filterEventByQuery = createAsyncThunk(
     },
 );
 
+const joinEvent = createAsyncThunk(
+    'event/join',
+    async (input, thunkAPI) => {
+        try {
+            const { _id, email } = input;
+            const res = await EventAPI.join(_id, email);
+            return res.data;
+        } catch (e) {
+            return thunkAPI.rejectWithValue(e);
+        }
+    },
+);
+
+const leaveEvent = createAsyncThunk(
+    'event/leave',
+    async (input, thunkAPI) => {
+        try {
+            const { _id, email } = input;
+            const res = await EventAPI.leave(_id, email);
+            return res.data;
+        } catch (e) {
+            return thunkAPI.rejectWithValue(e);
+        }
+    },
+);
+
 const eventSlice = createSlice({
     name: 'eventSlice',
     initialState: {
@@ -96,10 +122,36 @@ const eventSlice = createSlice({
         builder.addCase(filterEventByQuery.rejected, (state, action) => {
             state.message = action.payload.response.data.message;
         });
+        builder.addCase(joinEvent.fulfilled, (state, action) => {
+            const idx = state.events.map((event) => event._id).indexOf(action.payload._id);
+            if (idx !== -1) {
+                state.events[idx] = action.payload;
+            }
+            state.message = 'Successfully joined an event';
+        });
+        builder.addCase(joinEvent.rejected, (state, action) => {
+            state.message = 'Error occured while joining an event';
+        });
+        builder.addCase(leaveEvent.fulfilled, (state, action) => {
+            const idx = state.events.map((event) => event._id).indexOf(action.payload._id);
+            if (idx !== -1) {
+                state.events[idx] = action.payload;
+            }
+            state.message = 'Successfully left an event';
+        });
+        builder.addCase(leaveEvent.rejected, (state, action) => {
+            state.message = 'Error occured while leaving an event';
+        });
     },
 });
 
 export const eventSliceActions = {
-    getAllEvents, filterEventByQuery, createEvent, deleteEventByID, ...eventSlice.actions,
+    getAllEvents,
+    filterEventByQuery,
+    createEvent,
+    deleteEventByID,
+    joinEvent,
+    leaveEvent,
+    ...eventSlice.actions,
 };
 export default eventSlice.reducer;
