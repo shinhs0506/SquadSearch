@@ -26,7 +26,7 @@ app.use(bodyParser.json());
 app.use(upload.single('profilePicture'));
 
 // mongodb
-const mongoURL = process.env.NODE_ENV || 'development'
+const mongoURL = (process.env.NODE_ENV || 'development') === 'development'
     ? 'mongodb://localhost/cpsc455-SquadSearch'
     : 'mongodb+srv://squadsearch:squadsearch@cluster0.ostcb.mongodb.net/?retryWrites=true&w=majority';
 mongoose.connect(mongoURL, { dbName: 'cpsc455-squadsearch' });
