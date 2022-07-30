@@ -26,6 +26,6 @@
     "nodemon": "^2.0.19"
   },
   "scripts": {
-    "start": "cross-env NODE_ENV=production node index.js"
+    "start": "node index.js"
   }
 }

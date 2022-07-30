@@ -19,6 +19,8 @@ jobs:
           heroku_app_name: "cpsc455-squadsearch-backend"
           heroku_email: ${{ secrets.HEROKU_EMAIL }}
           appdir: "backend"
+        env:
+          NODE_ENV: production
   frontend-deploy:
     needs: backend-deploy
     runs-on: ubuntu-latest
