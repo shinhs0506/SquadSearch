@@ -22,8 +22,6 @@ function EventCard(props) {
         dispatch(eventSliceActions.deleteEventByID({ _id }));
     }
 
-    console.log('src: ', src);
-
     return (
         <div className="container">
             <div className="card">

@@ -49,8 +49,8 @@ export default function chatboard() {
                 <Divider />
                 <Typography>Joined Users</Typography>
                 { profilePictures.map((pp, i) => {
-                    const imageData = `data:image/png;base64,${pp}`;
-                    return <img key={pp} width={50} src={imageData} alt="profile" />;
+                    const src = `data:image/png;base64,${pp}`;
+                    return <img key={pp} width={50} src={src} alt="profile" />;
                 })}
                 <Divider />
                 <Typography>Channels</Typography>

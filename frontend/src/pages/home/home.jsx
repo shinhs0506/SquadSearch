@@ -11,7 +11,6 @@ import EventCardContainer from 'components/eventCard/eventCardContainer';
 
 function Home() {
     const user = useSelector((state) => state.auth.user);
-    const imageData = `data:image/png;base64,${user.profilePicture}`;
     const myEvents = useSelector(
         (state) => state.event.events.filter(
             (event) => event.joinedUsers.includes(user._id),
@@ -27,7 +26,7 @@ function Home() {
                     {' '}
                     { user.name }
                 </Typography>
-                <img width={100} src={imageData} alt="profile" />
+                <img width={100} src={user.profilePicture} alt="profile" />
                 <Typography>
                     { user.bio }
                 </Typography>
