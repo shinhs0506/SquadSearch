@@ -18,8 +18,13 @@ const createEvent = createAsyncThunk(
     'event/create',
     async (input, thunkAPI) => {
         try {
-            const { name, location, date } = input;
-            const res = await EventAPI.createEvent(name, location, date);
+            const { body } = input;
+            const name = body.get('name');
+            const date = body.get('date');
+            const location = body.get('location');
+            const eventPhoto = body.get('eventPhoto');
+
+            const res = await EventAPI.createEvent(name, location, date, eventPhoto);
             return res.data;
         } catch (e) {
             return thunkAPI.rejectWithValue(e);

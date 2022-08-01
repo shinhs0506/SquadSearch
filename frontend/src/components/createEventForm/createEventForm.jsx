@@ -1,32 +1,26 @@
-import React, { useRef } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { eventSliceActions } from 'redux/slices/eventSlice';
 
 // TODO: Maybe look into redux form
 
 export default function CreateEventForm() {
-    const eventName = useRef();
-    const eventDate = useRef();
-    const eventLocation = useRef();
     const dispatch = useDispatch();
 
-    function dispatchInput() {
-        const inputName = eventName.current.value;
-        const inputDate = eventDate.current.value;
-        const inputLocation = eventLocation.current.value;
-        dispatch(
-            eventSliceActions.createEvent({
-                name: inputName,
-                location: inputLocation,
-                date: inputDate,
-            }),
-        );
-    }
+    const [name, setName] = useState('');
+    const [date, setDate] = useState('');
+    const [location, setLocation] = useState('');
 
-    function resetForm() {
-        eventName.current.value = '';
-        eventDate.current.value = '';
-        eventLocation.current.value = '';
+    function dispatchInput(e) {
+        e.preventDefault();
+
+        const body = new FormData(e.target);
+
+        dispatch(eventSliceActions.createEvent({ body }));
+
+        setName('');
+        setDate('');
+        setLocation('');
     }
 
     return (
@@ -35,20 +29,16 @@ export default function CreateEventForm() {
 
             <form
               id="new_event"
-              onSubmit={(event) => {
-                  event.preventDefault();
-                  dispatchInput();
-                  resetForm();
-              }}
+              onSubmit={dispatchInput}
             >
                 <label htmlFor="name">
                     Name
-                    <input type="text" id="name" name="name" ref={eventName} />
+                    <input type="text" id="name" name="name" value={name} onChange={(e) => setName(e.target.value)} />
                 </label>
                 <br />
                 <label htmlFor="date ">
                     Date
-                    <input type="date" id="date" name="date" ref={eventDate} />
+                    <input type="date" id="date" name="date" value={date} onChange={(e) => setDate(e.target.value)} />
                 </label>
                 <br />
                 <label htmlFor="location">
@@ -57,8 +47,14 @@ export default function CreateEventForm() {
                       type="text"
                       id="location"
                       name="location"
-                      ref={eventLocation}
+                      value={location}
+                      onChange={(e) => setLocation(e.target.value)}
                     />
+                </label>
+                <br />
+                <label htmlFor="eventPhoto">
+                    Photo
+                    <input type="file" accept="image/png" id="eventPhoto" name="eventPhoto" />
                 </label>
                 <br />
                 <input type="submit" value="Submit" id="submitButton" />

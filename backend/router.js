@@ -1,4 +1,8 @@
 import express from 'express';
+import multer from 'multer';
+
+const profilePictureUpload = multer({});
+const eventPhotoUpload = multer({});
 
 import eventController from './controllers/eventController.js';
 import authController from './controllers/authController.js';
@@ -11,11 +15,11 @@ const router = express.Router();
 router.post('/api/auth/signup', authController.signupUser);
 router.post('/api/auth/login', authController.loginUser);
 router.post('/api/auth/logout/:email', authController.logoutUser);
-router.post('/api/auth/update/:email', authController.updateUser);
+router.post('/api/auth/update/:email', profilePictureUpload.single('profilePicture'), authController.updateUser);
 
 // event endpoints
 router.get('/api/events', eventController.getAllEvents);
-router.post('/api/events', eventController.createEvent);
+router.post('/api/events', profilePictureUpload.single('eventPhoto'), eventController.createEvent);
 router.delete('/api/event/:id', eventController.deleteEventByID);
 router.post('/api/event/:id/join', eventController.joinEvent);
 router.post('/api/event/:id/leave', eventController.leaveEvent);
