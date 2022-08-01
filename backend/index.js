@@ -1,5 +1,4 @@
 import express from 'express';
-import multer from 'multer';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
@@ -12,8 +11,6 @@ import applyPassportStrategy from './passport.js';
 
 const port = process.env.PORT || 4000;
 
-const upload = multer({});
-
 const app = express();
 
 const corsOptions = {
@@ -23,7 +20,6 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(upload.single('profilePicture'));
 
 // mongodb
 const mongoURL = (process.env.NODE_ENV || 'development') === 'development'

@@ -1,3 +1,5 @@
+import sharp from 'sharp';
+
 import Event from '../models/event.js';
 import User from '../models/user.js';
 
@@ -27,8 +29,21 @@ const getAllEventsContainingName = async (req, res) => {
 
 const createEvent = async (req, res) => {
     const { name, location, date } = req.body;
+    const eventPhoto = req.file;
 
     try {
+        if (eventPhoto) {
+            const photoBuffer = await sharp(eventPhoto.buffer).resize(300, 300).png().toBuffer();
+
+            const event = await Event.create({
+                name,
+                location,
+                date,
+                photo: photoBuffer,
+            });
+
+            return res.send(event);
+        }
         const event = await Event.create({
             name,
             location,

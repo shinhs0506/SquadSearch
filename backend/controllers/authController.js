@@ -1,6 +1,7 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import AvatarGenerator from 'avatar-generator';
+import sharp from 'sharp';
 
 import User from '../models/user.js';
 
@@ -38,7 +39,7 @@ const loginUser = async (req, res) => {
         const isMatch = await bcrypt.compare(password, user.password);
         if (isMatch) {
             const payload = {
-                user: user.toObject(),
+                user: user.toJSON(),
             };
             const token = jwt.sign(payload, 'secretKey', { expiresIn: '20d' });
             const tokenParts = token.split('.');
@@ -81,7 +82,8 @@ const updateUser = async (req, res) => {
             update.password = hashedPassword;
         }
         if (profilePicture && Object.keys(profilePicture).length !== 0) {
-            update.profilePicture = profilePicture.buffer;
+            const buffer = await sharp(profilePicture.buffer).resize(100, 100).png().toBuffer();
+            update.profilePicture = buffer;
         }
         if (bio) {
             update.bio = bio;

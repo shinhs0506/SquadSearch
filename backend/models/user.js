@@ -29,7 +29,7 @@ UserSchema.set('toJSON', {
     transform(doc, ret) {
         const base64 = doc.profilePicture.toString('base64');
         const res = ret;
-        res.data = base64;
+        res.profilePicture = `data:image/png;base64,${base64}`;
 
         return res;
     },
