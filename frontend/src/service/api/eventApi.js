@@ -17,10 +17,10 @@ class EventAPI {
 
     static async createEvent(name, location, date, eventPhoto) {
         const res = await axios.post(
-            '/events', 
-            { 
+            '/events',
+            {
                 name, location, date, eventPhoto,
-            }, 
+            },
             {
                 headers: {
                     'Content-Type': 'multipart/form-data',

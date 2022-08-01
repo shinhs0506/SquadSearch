@@ -33,9 +33,8 @@ EventSchema.set('toJSON', {
             res.photo = `data:image/png;base64,${base64}`;
 
             return res;
-        } else {
-            return ret;
         }
+        return ret;
     },
 });
 

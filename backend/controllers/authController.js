@@ -82,7 +82,7 @@ const updateUser = async (req, res) => {
             update.password = hashedPassword;
         }
         if (profilePicture && Object.keys(profilePicture).length !== 0) {
-            const buffer = await sharp(profilePicture.buffer).resize(100, 100).png().toBuffer()
+            const buffer = await sharp(profilePicture.buffer).resize(100, 100).png().toBuffer();
             update.profilePicture = buffer;
         }
         if (bio) {

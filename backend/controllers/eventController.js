@@ -9,10 +9,9 @@ const getAllEvents = async (req, res) => {
         if (query) {
             const events = await Event.find({ name: { $regex: query, $options: 'i' } });
             return res.send(events);
-        } else {
-            const events = await Event.find({});
-            return res.send(events);
         }
+        const events = await Event.find({});
+        return res.send(events);
     } catch (e) {
         return res.status(500).send({ message: 'Error occured while retrieving events' });
     }
@@ -34,24 +33,23 @@ const createEvent = async (req, res) => {
 
     try {
         if (eventPhoto) {
-            const photoBuffer = await sharp(eventPhoto.buffer).resize(300, 300).png().toBuffer()
+            const photoBuffer = await sharp(eventPhoto.buffer).resize(300, 300).png().toBuffer();
 
             const event = await Event.create({
                 name,
                 location,
                 date,
-                photo: photoBuffer
+                photo: photoBuffer,
             });
 
-            return res.send(event);
-        } else {
-            const event = await Event.create({
-                name,
-                location,
-                date,
-            });
             return res.send(event);
         }
+        const event = await Event.create({
+            name,
+            location,
+            date,
+        });
+        return res.send(event);
     } catch (e) {
         return res.status(500).send({ message: 'Error occured while creating an event, please try again' });
     }
