@@ -6,9 +6,14 @@ class AuthAPI {
         return res;
     }
 
+    static async forceLoginUser() {
+        setHeader();
+        const res = await axios.post('/auth/forceLogin', {});
+        return res;
+    }
+
     static async logoutUser() {
         setHeader();
-        console.log(token);
         const res = await axios.post(
             `/auth/logout`, 
             {}, 

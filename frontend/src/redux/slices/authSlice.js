@@ -16,6 +16,18 @@ const loginUser = createAsyncThunk(
     },
 );
 
+const forceLogin = createAsyncThunk(
+    'auth/forceLogin',
+    async (thunkAPI) => {
+        try {
+            const res = await AuthAPI.forceLoginUser();
+            return res.data;
+        } catch (e) {
+            return thunkAPI.rejectWithValue(e);
+        }
+    },
+);
+
 const logoutUser = createAsyncThunk(
     'auth/logout',
     async (input, thunkAPI) => {
@@ -82,12 +94,19 @@ const authSlice = createSlice({
     extraReducers: (builder) => {
         builder.addCase(loginUser.fulfilled, (state, action) => {
             state.isLoggedIn = true;
-            const decodedData = jwtDecode(action.payload.token);
-            state.user = decodedData.user;
-            state.message = `Welcome back ${state.name}`;
+            state.user = action.payload.user;
+            state.message = `Welcome back ${state.user.name}`;
             localStorage.setItem('token', action.payload.token);
         });
         builder.addCase(loginUser.rejected, (state, action) => {
+            state.message = action.payload.response.data.message;
+        });
+        builder.addCase(forceLogin.fulfilled, (state, action) => {
+            state.isLoggedIn = true;
+            state.user = action.payload.user;
+            localStorage.setItem('token', action.payload.token);
+        });
+        builder.addCase(forceLogin.rejected, (state, action) => {
             state.message = action.payload.response.data.message;
         });
         builder.addCase(signupUser.fulfilled, (state, action) => {
@@ -109,8 +128,7 @@ const authSlice = createSlice({
             state.message = action.payload.response.data.message;
         });
         builder.addCase(updateUser.fulfilled, (state, action) => {
-            const decodedData = jwtDecode(action.payload.token);
-            state.user = decodedData.user;
+            state.user = action.payload.user;
             state.message = 'successfully updated name';
             localStorage.setItem('token', action.payload.token);
         });
@@ -121,6 +139,6 @@ const authSlice = createSlice({
 });
 
 export const authSliceActions = {
-    loginUser, signupUser, logoutUser, updateUser, ...authSlice.actions,
+    loginUser, signupUser, logoutUser, forceLogin, updateUser, ...authSlice.actions,
 };
 export default authSlice.reducer;

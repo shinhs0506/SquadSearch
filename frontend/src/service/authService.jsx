@@ -25,9 +25,9 @@ const useCheckLogin = () => {
     const checkLogin = () => {
         if (token) {
             const decodedData = jwtDecode(token);
-            const { user, exp } = decodedData;
+            const { exp } = decodedData;
             if (!(Date.now() >= exp * 1000)) {
-                dispatch(authSliceActions.setLoginWithToken(user));
+                dispatch(authSliceActions.forceLogin());
             }
         }
     };

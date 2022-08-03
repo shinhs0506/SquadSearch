@@ -18,13 +18,13 @@ function verifyToken(req, res, next) {
     if (typeof token !== undefined) {
         req.token = token.split(' ')[1];
         const decodedData = jwtDecode(req.token);
-        const { user, exp } = decodedData;
+        const { _id, exp } = decodedData;
 
         if (Date.now() >= exp * 1000) {
             return res.status(401).send({ message: 'login status expired' });
         }
 
-        req.user = user;
+        req.userId = _id;
         next();
     } else {
         return res.status(401).send({ message: 'Authorization header missing' });
@@ -34,16 +34,17 @@ function verifyToken(req, res, next) {
 // auth endpoints
 router.post('/api/auth/signup', authController.signupUser);
 router.post('/api/auth/login', authController.loginUser);
+router.post('/api/auth/forceLogin', verifyToken, authController.forceLoginUser);
 router.post('/api/auth/logout/', verifyToken, authController.logoutUser);
 router.post('/api/auth/update/', verifyToken, upload.single('profilePicture'), authController.updateUser);
 
 // event endpoints
-router.get('/api/events', eventController.getAllEvents);
-router.post('/api/events', upload.single('eventPhoto'), eventController.createEvent);
-router.delete('/api/event/:id', eventController.deleteEventByID);
-router.post('/api/event/:id/join', eventController.joinEvent);
-router.post('/api/event/:id/leave', eventController.leaveEvent);
-router.get('/api/event/:id/profilePictures', eventController.getProfilePictures);
+router.get('/api/events', verifyToken, eventController.getAllEvents);
+router.post('/api/events', verifyToken, upload.single('eventPhoto'), eventController.createEvent);
+router.delete('/api/event/:id', verifyToken, eventController.deleteEventByID);
+router.post('/api/event/:id/join', verifyToken, eventController.joinEvent);
+router.post('/api/event/:id/leave', verifyToken, eventController.leaveEvent);
+router.get('/api/event/:id/profilePictures', verifyToken, eventController.getProfilePictures);
 
 // chat endpoints
 router.get('/api/chats/:userId', chatController.getAllChatsWithUser);
