@@ -15,9 +15,14 @@ const app = express();
 
 const corsOptions = {
     origin: ['https://cpsc455-squadsearch-frontend.herokuapp.com', 'http://localhost:3000'],
+    allowedHeaders: ['Authorization', 'Content-Type']
 };
 
-app.use(cors(corsOptions));
+app.use(cors({
+    origin: ['https://cpsc455-squadsearch-frontend.herokuapp.com', 'http://localhost:3000'],
+    allowedHeaders: ['Authorization', 'Content-Type'],
+    credentials: true
+}));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 

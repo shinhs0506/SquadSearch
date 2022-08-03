@@ -8,4 +8,14 @@ const axios = Axios.create({
     baseURL: baseURL,
 });
 
-export default axios;
+function setHeader() {
+    const token = localStorage.getItem('token');
+    if (token) {
+        axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+    } else {
+        axios.defaults.headers.common['Authorization'] = null;
+        // delete axios.defaults.headers.common['Authorization'];
+    }
+}
+
+export { axios, setHeader };

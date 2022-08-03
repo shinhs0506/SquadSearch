@@ -1,4 +1,4 @@
-import axios from './axios';
+import { axios, setHeader } from './axios';
 
 class AuthAPI {
     static async loginUser(email, password) {
@@ -6,8 +6,13 @@ class AuthAPI {
         return res;
     }
 
-    static async logoutUser(email) {
-        const res = await axios.post(`/auth/logout/${email}`, {});
+    static async logoutUser() {
+        setHeader();
+        console.log(token);
+        const res = await axios.post(
+            `/auth/logout`, 
+            {}, 
+        );
         return res;
     }
 
@@ -16,9 +21,10 @@ class AuthAPI {
         return res;
     }
 
-    static async updateUser(email, name, password, profilePicture, bio) {
+    static async updateUser(name, password, profilePicture, bio) {
+        setHeader();
         const res = await axios.post(
-            `/auth/update/${email}`,
+            `/auth/update`,
             {
                 name, password, profilePicture, bio,
             },

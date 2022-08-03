@@ -15,8 +15,7 @@ export default function EditProfileForm() {
 
         const body = new FormData(e.target);
 
-        const { email } = user;
-        dispatch(authSliceActions.updateUser({ email, body }));
+        dispatch(authSliceActions.updateUser({ body }));
     }
 
     return (

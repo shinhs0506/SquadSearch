@@ -1,4 +1,4 @@
-import axios from './axios';
+import { axios, setHeader } from './axios';
 
 class EventAPI {
     static async getAllEvents() {

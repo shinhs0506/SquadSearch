@@ -20,8 +20,8 @@ const logoutUser = createAsyncThunk(
     'auth/logout',
     async (input, thunkAPI) => {
         try {
-            const { email } = input;
-            const res = await AuthAPI.logoutUser(email);
+            const { token } = input;
+            const res = await AuthAPI.logoutUser(token);
             return res.data;
         } catch (e) {
             return thunkAPI.rejectWithValue(e);
@@ -46,12 +46,12 @@ const updateUser = createAsyncThunk(
     'auth/update',
     async (input, thunkAPI) => {
         try {
-            const { email, body } = input;
+            const { body } = input;
             const name = body.get('name');
             const password = body.get('password');
             const profilePicture = body.get('profilePicture');
             const bio = body.get('bio');
-            const res = await AuthAPI.updateUser(email, name, password, profilePicture, bio);
+            const res = await AuthAPI.updateUser(name, password, profilePicture, bio);
             return res.data;
         } catch (e) {
             return thunkAPI.rejectWithValue(e);
@@ -82,11 +82,10 @@ const authSlice = createSlice({
     extraReducers: (builder) => {
         builder.addCase(loginUser.fulfilled, (state, action) => {
             state.isLoggedIn = true;
-            const decodedData = jwtDecode(`${action.payload.tokenHeader}.${action.payload.tokenBody}`);
+            const decodedData = jwtDecode(action.payload.token);
             state.user = decodedData.user;
             state.message = `Welcome back ${state.name}`;
-            localStorage.setItem('tokenHeader', action.payload.tokenHeader);
-            localStorage.setItem('tokenBody', action.payload.tokenBody);
+            localStorage.setItem('token', action.payload.token);
         });
         builder.addCase(loginUser.rejected, (state, action) => {
             state.message = action.payload.response.data.message;
@@ -103,18 +102,17 @@ const authSlice = createSlice({
             state.message = `see you again ${state.name}`;
             state.isLoggedIn = false;
             state.user = null;
-            localStorage.removeItem('tokenHeader');
-            localStorage.removeItem('tokenBody');
+            localStorage.removeItem('token');
         });
         builder.addCase(logoutUser.rejected, (state, action) => {
+            console.log(action.payload)
             state.message = action.payload.response.data.message;
         });
         builder.addCase(updateUser.fulfilled, (state, action) => {
-            const decodedData = jwtDecode(`${action.payload.tokenHeader}.${action.payload.tokenBody}`);
+            const decodedData = jwtDecode(action.payload.token);
             state.user = decodedData.user;
             state.message = 'successfully updated name';
-            localStorage.setItem('tokenHeader', action.payload.tokenHeader);
-            localStorage.setItem('tokenBody', action.payload.tokenBody);
+            localStorage.setItem('token', action.payload.token);
         });
         builder.addCase(updateUser.rejected, (state, action) => {
             state.message = action.payload.response.data.message;

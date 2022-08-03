@@ -1,5 +1,6 @@
 import express from 'express';
 import multer from 'multer';
+import jwtDecode from 'jwt-decode'
 
 import eventController from './controllers/eventController.js';
 import authController from './controllers/authController.js';
@@ -10,11 +11,31 @@ const upload = multer({});
 
 const router = express.Router();
 
+// token verify
+function verifyToken(req, res, next) {
+    const token = req.headers['authorization'];
+    console.log('header: ', req.headers);
+    if (typeof token !== undefined) {
+        req.token = token.split(' ')[1];
+        const decodedData = jwtDecode(req.token);
+        const { user, exp } = decodedData;
+
+        if (Date.now() >= exp * 1000) {
+            return res.status(401).send({ message: 'login status expired' });
+        }
+
+        req.user = user;
+        next();
+    } else {
+        return res.status(401).send({ message: 'Authorization header missing' });
+    }
+}
+
 // auth endpoints
 router.post('/api/auth/signup', authController.signupUser);
 router.post('/api/auth/login', authController.loginUser);
-router.post('/api/auth/logout/:email', authController.logoutUser);
-router.post('/api/auth/update/:email', upload.single('profilePicture'), authController.updateUser);
+router.post('/api/auth/logout/', verifyToken, authController.logoutUser);
+router.post('/api/auth/update/', verifyToken, upload.single('profilePicture'), authController.updateUser);
 
 // event endpoints
 router.get('/api/events', eventController.getAllEvents);

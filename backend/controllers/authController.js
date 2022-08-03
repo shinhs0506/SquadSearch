@@ -23,7 +23,7 @@ const signupUser = async (req, res) => {
             name,
             email,
             password: hashedPassword,
-            profilePicture: imageBuffer,
+            // profilePicture: imageBuffer,
             bio: 'random bio',
         });
         return res.send(user);
@@ -42,11 +42,7 @@ const loginUser = async (req, res) => {
                 user: user.toJSON(),
             };
             const token = jwt.sign(payload, 'secretKey', { expiresIn: '20d' });
-            const tokenParts = token.split('.');
-            return res.send({
-                tokenHeader: tokenParts[0],
-                tokenBody: tokenParts[1],
-            });
+            return res.send({ token });
         }
         return res.status(400).send({ message: 'Wrong password' });
     } catch (e) {
@@ -55,10 +51,9 @@ const loginUser = async (req, res) => {
 };
 
 const logoutUser = async (req, res) => {
-    const { email } = req.params;
-
     try {
-        const user = await User.findOne({ email }).orFail();
+        const { _id } = req.user;
+        const user = await User.findById(_id).orFail();
         return res.send(user);
     } catch (e) {
         return res.status(400).send({ message: 'Email not found' });
@@ -66,7 +61,7 @@ const logoutUser = async (req, res) => {
 };
 
 const updateUser = async (req, res) => {
-    const { email } = req.params;
+    const { _id } = req.user;
     const { name, password, bio } = req.body;
     const profilePicture = req.file;
 
@@ -89,15 +84,13 @@ const updateUser = async (req, res) => {
             update.bio = bio;
         }
 
-        const user = await User.findOneAndUpdate({ email }, update, { new: true }).orFail();
+        const user = await User.findByIdAndUpdate(_id, update, { new: true }).orFail();
         const payload = {
             user: user.toObject(),
         };
         const token = jwt.sign(payload, 'secretKey', { expiresIn: '20d' });
-        const tokenParts = token.split('.');
         return res.send({
-            tokenHeader: tokenParts[0],
-            tokenBody: tokenParts[1],
+            token: token
         });
     } catch (e) {
         return res.status(400).send({ message: 'Error while updating user' });
