@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import EventAPI from 'service/api/eventApi';
-import authSlice from './authSlice';
 
 const getAllEvents = createAsyncThunk(
     'event/getAll',
