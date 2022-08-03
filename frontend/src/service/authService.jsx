@@ -20,7 +20,7 @@ const useLogout = () => {
 
 const useCheckLogin = () => {
     const dispatch = useDispatch();
-    const token= localStorage.getItem('token');
+    const token = localStorage.getItem('token');
 
     const checkLogin = () => {
         if (token) {

@@ -15,8 +15,8 @@ class AuthAPI {
     static async logoutUser() {
         setHeader();
         const res = await axios.post(
-            `/auth/logout`, 
-            {}, 
+            '/auth/logout',
+            {},
         );
         return res;
     }
@@ -29,7 +29,7 @@ class AuthAPI {
     static async updateUser(name, password, profilePicture, bio) {
         setHeader();
         const res = await axios.post(
-            `/auth/update`,
+            '/auth/update',
             {
                 name, password, profilePicture, bio,
             },

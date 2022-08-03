@@ -40,12 +40,12 @@ const loginUser = async (req, res) => {
         if (isMatch) {
             const payload = {
                 _id: user._id,
-                name: user.name
+                name: user.name,
             };
             const token = jwt.sign(payload, 'secretKey', { expiresIn: '20d' });
             return res.send({
                 user: user.toJSON(),
-                token: token
+                token,
             });
         }
         return res.status(400).send({ message: 'Wrong password' });
@@ -59,18 +59,17 @@ const forceLoginUser = async (req, res) => {
         const user = await User.findById(req.userId).orFail();
         const payload = {
             _id: user._id,
-            name: user.name
+            name: user.name,
         };
         const token = jwt.sign(payload, 'secretKey', { expiresIn: '20d' });
         return res.send({
             user: user.toJSON(),
-            token: token
+            token,
         });
     } catch (e) {
         return res.status(500).send({ message: 'Error occured while forcing login' });
     }
-
-}
+};
 
 const logoutUser = async (req, res) => {
     try {
@@ -108,12 +107,12 @@ const updateUser = async (req, res) => {
         const user = await User.findByIdAndUpdate(_id, update, { new: true }).orFail();
         const payload = {
             _id: user._id,
-            name: user.name
+            name: user.name,
         };
         const token = jwt.sign(payload, 'secretKey', { expiresIn: '20d' });
         return res.send({
             user: user.toJSON(),
-            token: token
+            token,
         });
     } catch (e) {
         return res.status(400).send({ message: 'Error while updating user' });

@@ -1,6 +1,6 @@
 import express from 'express';
 import multer from 'multer';
-import jwtDecode from 'jwt-decode'
+import jwtDecode from 'jwt-decode';
 
 import eventController from './controllers/eventController.js';
 import authController from './controllers/authController.js';
@@ -13,9 +13,10 @@ const router = express.Router();
 
 // token verify
 function verifyToken(req, res, next) {
-    const token = req.headers['authorization'];
-    if (typeof token !== undefined) {
-        req.token = token.split(' ')[1];
+    const token = req.headers.authorization;
+    if (typeof token !== 'undefined') {
+        const [, bearerToken] = token.split(' ');
+        req.token = bearerToken;
         const decodedData = jwtDecode(req.token);
         const { _id, exp } = decodedData;
 
@@ -24,10 +25,9 @@ function verifyToken(req, res, next) {
         }
 
         req.userId = _id;
-        next();
-    } else {
-        return res.status(401).send({ message: 'Authorization header missing' });
+        return next();
     }
+    return res.status(401).send({ message: 'Authorization header missing' });
 }
 
 // auth endpoints
