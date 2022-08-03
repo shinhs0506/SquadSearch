@@ -124,7 +124,6 @@ const authSlice = createSlice({
             localStorage.removeItem('token');
         });
         builder.addCase(logoutUser.rejected, (state, action) => {
-            console.log(action.payload)
             state.message = action.payload.response.data.message;
         });
         builder.addCase(updateUser.fulfilled, (state, action) => {

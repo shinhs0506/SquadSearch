@@ -14,7 +14,6 @@ const router = express.Router();
 // token verify
 function verifyToken(req, res, next) {
     const token = req.headers['authorization'];
-    console.log('header: ', req.headers);
     if (typeof token !== undefined) {
         req.token = token.split(' ')[1];
         const decodedData = jwtDecode(req.token);
