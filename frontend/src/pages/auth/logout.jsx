@@ -7,9 +7,9 @@ import { authSliceActions } from 'redux/slices/authSlice';
 function Logout() {
     const dispatch = useDispatch();
     const nagivate = useNavigate();
-    const { email } = useSelector((state) => state.auth.user);
 
-    dispatch(authSliceActions.logoutUser({ email }));
+    const token = localStorage.getItem('token');
+    dispatch(authSliceActions.logoutUser({ token }));
     const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
     useEffect(() => {

@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import jwtDecode from 'jwt-decode';
 
 import AuthAPI from 'service/api/authApi';
 
@@ -16,12 +15,24 @@ const loginUser = createAsyncThunk(
     },
 );
 
+const forceLogin = createAsyncThunk(
+    'auth/forceLogin',
+    async (thunkAPI) => {
+        try {
+            const res = await AuthAPI.forceLoginUser();
+            return res.data;
+        } catch (e) {
+            return thunkAPI.rejectWithValue(e);
+        }
+    },
+);
+
 const logoutUser = createAsyncThunk(
     'auth/logout',
     async (input, thunkAPI) => {
         try {
-            const { email } = input;
-            const res = await AuthAPI.logoutUser(email);
+            const { token } = input;
+            const res = await AuthAPI.logoutUser(token);
             return res.data;
         } catch (e) {
             return thunkAPI.rejectWithValue(e);
@@ -46,12 +57,12 @@ const updateUser = createAsyncThunk(
     'auth/update',
     async (input, thunkAPI) => {
         try {
-            const { email, body } = input;
+            const { body } = input;
             const name = body.get('name');
             const password = body.get('password');
             const profilePicture = body.get('profilePicture');
             const bio = body.get('bio');
-            const res = await AuthAPI.updateUser(email, name, password, profilePicture, bio);
+            const res = await AuthAPI.updateUser(name, password, profilePicture, bio);
             return res.data;
         } catch (e) {
             return thunkAPI.rejectWithValue(e);
@@ -82,13 +93,19 @@ const authSlice = createSlice({
     extraReducers: (builder) => {
         builder.addCase(loginUser.fulfilled, (state, action) => {
             state.isLoggedIn = true;
-            const decodedData = jwtDecode(`${action.payload.tokenHeader}.${action.payload.tokenBody}`);
-            state.user = decodedData.user;
-            state.message = `Welcome back ${state.name}`;
-            localStorage.setItem('tokenHeader', action.payload.tokenHeader);
-            localStorage.setItem('tokenBody', action.payload.tokenBody);
+            state.user = action.payload.user;
+            state.message = `Welcome back ${state.user.name}`;
+            localStorage.setItem('token', action.payload.token);
         });
         builder.addCase(loginUser.rejected, (state, action) => {
+            state.message = action.payload.response.data.message;
+        });
+        builder.addCase(forceLogin.fulfilled, (state, action) => {
+            state.isLoggedIn = true;
+            state.user = action.payload.user;
+            localStorage.setItem('token', action.payload.token);
+        });
+        builder.addCase(forceLogin.rejected, (state, action) => {
             state.message = action.payload.response.data.message;
         });
         builder.addCase(signupUser.fulfilled, (state, action) => {
@@ -103,18 +120,15 @@ const authSlice = createSlice({
             state.message = `see you again ${state.name}`;
             state.isLoggedIn = false;
             state.user = null;
-            localStorage.removeItem('tokenHeader');
-            localStorage.removeItem('tokenBody');
+            localStorage.removeItem('token');
         });
         builder.addCase(logoutUser.rejected, (state, action) => {
             state.message = action.payload.response.data.message;
         });
         builder.addCase(updateUser.fulfilled, (state, action) => {
-            const decodedData = jwtDecode(`${action.payload.tokenHeader}.${action.payload.tokenBody}`);
-            state.user = decodedData.user;
+            state.user = action.payload.user;
             state.message = 'successfully updated name';
-            localStorage.setItem('tokenHeader', action.payload.tokenHeader);
-            localStorage.setItem('tokenBody', action.payload.tokenBody);
+            localStorage.setItem('token', action.payload.token);
         });
         builder.addCase(updateUser.rejected, (state, action) => {
             state.message = action.payload.response.data.message;
@@ -123,6 +137,6 @@ const authSlice = createSlice({
 });
 
 export const authSliceActions = {
-    loginUser, signupUser, logoutUser, updateUser, ...authSlice.actions,
+    loginUser, signupUser, logoutUser, forceLogin, updateUser, ...authSlice.actions,
 };
 export default authSlice.reducer;

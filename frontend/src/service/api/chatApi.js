@@ -1,4 +1,4 @@
-import axios from './axios';
+import { axios, setHeader } from './axios';
 
 class ChatAPI {
     static async getAllChatsWithUser(chatId) {

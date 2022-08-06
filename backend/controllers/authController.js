@@ -39,13 +39,13 @@ const loginUser = async (req, res) => {
         const isMatch = await bcrypt.compare(password, user.password);
         if (isMatch) {
             const payload = {
-                user: user.toJSON(),
+                _id: user._id,
+                name: user.name,
             };
             const token = jwt.sign(payload, 'secretKey', { expiresIn: '20d' });
-            const tokenParts = token.split('.');
             return res.send({
-                tokenHeader: tokenParts[0],
-                tokenBody: tokenParts[1],
+                user: user.toJSON(),
+                token,
             });
         }
         return res.status(400).send({ message: 'Wrong password' });
@@ -54,11 +54,26 @@ const loginUser = async (req, res) => {
     }
 };
 
-const logoutUser = async (req, res) => {
-    const { email } = req.params;
-
+const forceLoginUser = async (req, res) => {
     try {
-        const user = await User.findOne({ email }).orFail();
+        const user = await User.findById(req.userId).orFail();
+        const payload = {
+            _id: user._id,
+            name: user.name,
+        };
+        const token = jwt.sign(payload, 'secretKey', { expiresIn: '20d' });
+        return res.send({
+            user: user.toJSON(),
+            token,
+        });
+    } catch (e) {
+        return res.status(500).send({ message: 'Error occured while forcing login' });
+    }
+};
+
+const logoutUser = async (req, res) => {
+    try {
+        const user = await User.findById(req.userId).orFail();
         return res.send(user);
     } catch (e) {
         return res.status(400).send({ message: 'Email not found' });
@@ -66,7 +81,7 @@ const logoutUser = async (req, res) => {
 };
 
 const updateUser = async (req, res) => {
-    const { email } = req.params;
+    const _id = req.userId;
     const { name, password, bio } = req.body;
     const profilePicture = req.file;
 
@@ -89,15 +104,15 @@ const updateUser = async (req, res) => {
             update.bio = bio;
         }
 
-        const user = await User.findOneAndUpdate({ email }, update, { new: true }).orFail();
+        const user = await User.findByIdAndUpdate(_id, update, { new: true }).orFail();
         const payload = {
-            user: user.toObject(),
+            _id: user._id,
+            name: user.name,
         };
         const token = jwt.sign(payload, 'secretKey', { expiresIn: '20d' });
-        const tokenParts = token.split('.');
         return res.send({
-            tokenHeader: tokenParts[0],
-            tokenBody: tokenParts[1],
+            user: user.toJSON(),
+            token,
         });
     } catch (e) {
         return res.status(400).send({ message: 'Error while updating user' });
@@ -105,5 +120,5 @@ const updateUser = async (req, res) => {
 };
 
 export default {
-    signupUser, loginUser, logoutUser, updateUser,
+    signupUser, loginUser, forceLoginUser, logoutUser, updateUser,
 };

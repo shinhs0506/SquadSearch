@@ -13,11 +13,11 @@ const port = process.env.PORT || 4000;
 
 const app = express();
 
-const corsOptions = {
+app.use(cors({
     origin: ['https://cpsc455-squadsearch-frontend.herokuapp.com', 'http://localhost:3000'],
-};
-
-app.use(cors(corsOptions));
+    allowedHeaders: ['*'],
+    credentials: true,
+}));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
