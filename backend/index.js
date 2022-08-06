@@ -37,12 +37,6 @@ applyPassportStrategy(passport);
 // routes
 app.use('/', router);
 
-/*
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`);
-});
-*/
-
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
     cors: {
@@ -52,7 +46,6 @@ const io = new Server(httpServer, {
 
 io.on('connection', (socket) => {
     socket.on('send_message', (data) => {
-        // socket.broadcast.emit('receive_message', data);
         io.sockets.in(data.room).emit('receive_message', data);
     });
     socket.on('join_room', (room) => {

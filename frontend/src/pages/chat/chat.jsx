@@ -2,9 +2,7 @@ import React from 'react';
 import { Box } from '@mui/material';
 
 import Sidebar from 'components/sidebars/sidebar';
-// import ContactsContainer from 'components/messages/contactsContainer';
-import ChatContainer from 'components/chat/chatContainer';
-import Chat from 'components/chat/chat';
+import ChatContainer from 'components/chat/chat';
 
 export default function Messages() {
     return (
@@ -14,7 +12,6 @@ export default function Messages() {
             </Sidebar>
             <Box component="main">
                 <ChatContainer />
-                {/* <Chat /> */}
             </Box>
         </Box>
     );
