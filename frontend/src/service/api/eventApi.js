@@ -1,12 +1,14 @@
-import axios from './axios';
+import { axios, setHeader } from './axios';
 
 class EventAPI {
     static async getAllEvents() {
+        setHeader();
         const res = await axios.get('/events');
         return res;
     }
 
     static async getAllEventsContainingName(query) {
+        setHeader();
         const res = await axios.get('/events', {
             params: {
                 query,
@@ -16,6 +18,7 @@ class EventAPI {
     }
 
     static async createEvent(name, location, date, eventPhoto) {
+        setHeader();
         const res = await axios.post(
             '/events',
             {
@@ -31,21 +34,25 @@ class EventAPI {
     }
 
     static async deleteEventByID(id) {
+        setHeader();
         const res = await axios.delete(`/event/${id}`, { id });
         return res;
     }
 
     static async join(id, email) {
+        setHeader();
         const res = await axios.post(`/event/${id}/join`, { email });
         return res;
     }
 
     static async leave(id, email) {
+        setHeader();
         const res = await axios.post(`/event/${id}/leave`, { email });
         return res;
     }
 
     static async getProfilePictures(id) {
+        setHeader();
         const res = await axios.get(`/event/${id}/profilePictures`);
         return res;
     }

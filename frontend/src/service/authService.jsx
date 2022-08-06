@@ -10,9 +10,8 @@ const useLogout = () => {
 
     const logout = async () => {
         if (user) {
-            console.log(user);
-            const { email } = user;
-            dispatch(authSliceActions.logoutUser({ email }));
+            const token = localStorage.getItem('token');
+            dispatch(authSliceActions.logoutUser({ token }));
         }
     };
 
@@ -21,15 +20,14 @@ const useLogout = () => {
 
 const useCheckLogin = () => {
     const dispatch = useDispatch();
-    const tokenHeader = localStorage.getItem('tokenHeader');
-    const tokenBody = localStorage.getItem('tokenBody');
+    const token = localStorage.getItem('token');
 
     const checkLogin = () => {
-        if (tokenHeader && tokenBody) {
-            const decodedData = jwtDecode(`${tokenHeader}.${tokenBody}`);
-            const { user, exp } = decodedData;
+        if (token) {
+            const decodedData = jwtDecode(token);
+            const { exp } = decodedData;
             if (!(Date.now() >= exp * 1000)) {
-                dispatch(authSliceActions.setLoginWithToken(user));
+                dispatch(authSliceActions.forceLogin());
             }
         }
     };
