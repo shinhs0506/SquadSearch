@@ -5,7 +5,6 @@ import jwtDecode from 'jwt-decode';
 import eventController from './controllers/eventController.js';
 import authController from './controllers/authController.js';
 import chatController from './controllers/chatController.js';
-import messageController from './controllers/messageController.js';
 
 const upload = multer({});
 
@@ -48,9 +47,8 @@ router.get('/api/event/:id/profilePictures', verifyToken, eventController.getPro
 // chat endpoints
 router.get('/api/chats/:userId', chatController.getAllChatsWithUser);
 router.post('/api/chats', chatController.createChat);
-
-// message endpoints
-router.get('/api/messages/:chatId', messageController.getMessagesByChatId);
-router.post('/api/messages', messageController.createMessage);
+router.post('/api/chats/:chatId', chatController.createMessage);
+router.get('/api/chats/messages/:chatId', chatController.getAllMessages);
+router.get('/api/chats/senderInfo/:userId', chatController.getSenderInfo);
 
 export default router;
