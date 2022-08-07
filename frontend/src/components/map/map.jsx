@@ -52,10 +52,6 @@ function MapWrapper({ google }) {
         setSelectedPlace(props);
     }
 
-    function handleJoin() {
-        dispatch(eventSliceActions.joinEvent({ _id, email }));
-    }
-
     return coords && (
         <Map 
         google={google} 
