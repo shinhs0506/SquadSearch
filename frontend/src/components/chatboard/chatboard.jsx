@@ -8,7 +8,7 @@ import {
 import Sidebar from 'components/sidebars/sidebar';
 import { eventSliceActions } from 'redux/slices/eventSlice';
 import EventAPI from 'service/api/eventApi';
-import './chatboard.css'
+import './chatboard.css';
 
 export default function chatboard() {
     const data = useLocation();
@@ -49,11 +49,11 @@ export default function chatboard() {
                 </List>
                 <Divider />
                 <Typography>Joined Users</Typography>
-                <div id='profile-picture-box'>
-                { profilePictures.map((pp, i) => {
-                    const src = `data:image/png;base64,${pp}`;
-                    return <img key={pp} width={50} src={src} alt="profile" />;
-                })}
+                <div id="profile-picture-box">
+                    { profilePictures.map((pp, i) => {
+                        const src = `data:image/png;base64,${pp}`;
+                        return <img key={pp} width={50} src={src} alt="profile" />;
+                    })}
                 </div>
                 <Divider />
                 <Typography>Channels</Typography>
