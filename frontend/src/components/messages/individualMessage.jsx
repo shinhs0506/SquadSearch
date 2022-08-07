@@ -5,7 +5,6 @@ import './individualMessage.css';
 
 export default function individualMessage() {
     return (
-        <div>
-        </div>
+        <div />
     );
 }
