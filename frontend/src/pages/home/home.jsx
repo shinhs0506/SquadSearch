@@ -8,6 +8,7 @@ import {
 import Sidebar from 'components/sidebars/sidebar';
 import Searchbar from 'components/searchbar/searchbar';
 import EventCardContainer from 'components/eventCard/eventCardContainer';
+import MapWrapper from 'components/map/map';
 
 function Home() {
     const user = useSelector((state) => state.auth.user);
@@ -57,6 +58,7 @@ function Home() {
                 <h1>Home</h1>
                 <Searchbar />
                 <EventCardContainer />
+                <MapWrapper />
             </Box>
         </Box>
     );
