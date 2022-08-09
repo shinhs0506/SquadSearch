@@ -9,7 +9,7 @@ const getAllChats = async (req, res) => {
     } catch (e) {
         return res.status(500).send({ message: 'Error occured while getting chats' });
     }
-}
+};
 
 const getAllChatsWithUser = async (req, res) => {
     try {
@@ -74,20 +74,26 @@ const joinChats = async (req, res) => {
         const user = await User.findOne({ email }).orFail();
         const userId = user._id;
         const event = await Event.findById(eventId).orFail();
-        const chats = event.chats;
+        const { chats } = event;
         chats.forEach(async (chat) => {
             await Chat.findByIdAndUpdate(
                 chat,
-                { $push: { members: userId }},
+                { $push: { members: userId } },
                 { new: true },
-            )
+            );
         });
         return res.send(chats);
     } catch (e) {
         return res.status(500).send({ message: 'Error occured while joining chat' });
     }
-}
+};
 
 export default {
-    getAllChats, getAllChatsWithUser, createChat, createMessage, getAllMessages, getSenderInfo, joinChats,
+    getAllChats,
+    getAllChatsWithUser,
+    createChat,
+    createMessage,
+    getAllMessages,
+    getSenderInfo,
+    joinChats,
 };

@@ -130,12 +130,12 @@ const getAllChats = async (req, res) => {
     const { eventId } = req.params;
     try {
         const event = await Event.findById(eventId);
-        const chats = await Chat.find({_id: {$in: event.chats}});
+        const chats = await Chat.find({ _id: { $in: event.chats } });
         return res.send(chats);
     } catch (e) {
-        return res.status(500).send({ message: 'Error occured while getting chats in event' })
+        return res.status(500).send({ message: 'Error occured while getting chats in event' });
     }
-}
+};
 
 export default {
     getAllEvents,
