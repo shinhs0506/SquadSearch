@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { eventSliceActions } from 'redux/slices/eventSlice';
+import { chatSliceActions } from 'redux/slices/chatSlice';
 import { Link } from 'react-router-dom';
 
 import './eventCard.css';
@@ -16,6 +17,7 @@ function EventCard(props) {
 
     function handleJoin() {
         dispatch(eventSliceActions.joinEvent({ _id, email }));
+        dispatch(chatSliceActions.joinChats({ _id, email }));
     }
 
     function handleDelete() {

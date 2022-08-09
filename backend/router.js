@@ -43,12 +43,16 @@ router.delete('/api/event/:id', verifyToken, eventController.deleteEventByID);
 router.post('/api/event/:id/join', verifyToken, eventController.joinEvent);
 router.post('/api/event/:id/leave', verifyToken, eventController.leaveEvent);
 router.get('/api/event/:id/profilePictures', verifyToken, eventController.getProfilePictures);
+router.post('/api/event/:eventId/addChat', verifyToken, eventController.addChat);
+router.get('/api/event/:eventId/getAllChats', verifyToken, eventController.getAllChats);
 
 // chat endpoints
-router.get('/api/chats/:userId', chatController.getAllChatsWithUser);
-router.post('/api/chats', chatController.createChat);
-router.post('/api/chats/:chatId', chatController.createMessage);
-router.get('/api/chats/messages/:chatId', chatController.getAllMessages);
-router.get('/api/chats/senderInfo/:userId', chatController.getSenderInfo);
+router.get('/api/chats', verifyToken, chatController.getAllChats);
+router.get('/api/chats/:userId', verifyToken, chatController.getAllChatsWithUser);
+router.post('/api/chats', verifyToken, chatController.createChat);
+router.post('/api/chats/:chatId', verifyToken, chatController.createMessage);
+router.get('/api/chats/messages/:chatId', verifyToken, chatController.getAllMessages);
+router.get('/api/chats/senderInfo/:userId', verifyToken, chatController.getSenderInfo);
+router.post('/api/chats/:eventId/join', verifyToken, chatController.joinChats);
 
 export default router;

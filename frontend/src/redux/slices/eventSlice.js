@@ -83,6 +83,31 @@ const leaveEvent = createAsyncThunk(
     },
 );
 
+const addChat = createAsyncThunk(
+    'event/addChat',
+    async (input, thunkAPI) => {
+        try {
+            const { eventId, chatId } = input;
+            const res = await EventAPI.addChat(eventId, chatId);
+            return res.data;
+        } catch (e) {
+            return thunkAPI.rejectWithValue(e);
+        }
+    },
+);
+
+const getAllChats = createAsyncThunk(
+    'event/getAllChats',
+    async (input, thunkAPI) => {
+        try {
+            const res = await EventAPI.getAllChats(input);
+            return res.data;
+        } catch (e) {
+            return thunkAPI.rejectWithValue(e);
+        }
+    },
+);
+
 const eventSlice = createSlice({
     name: 'eventSlice',
     initialState: {
@@ -156,6 +181,8 @@ export const eventSliceActions = {
     deleteEventByID,
     joinEvent,
     leaveEvent,
+    addChat,
+    getAllChats,
     ...eventSlice.actions,
 };
 export default eventSlice.reducer;

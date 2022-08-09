@@ -2,7 +2,7 @@ import React from 'react';
 import { Box } from '@mui/material';
 
 import Sidebar from 'components/sidebars/sidebar';
-import ChatContainer from 'components/chat/chat';
+import Chat from 'components/chat/chat';
 
 export default function Messages() {
     return (
@@ -11,7 +11,7 @@ export default function Messages() {
                 <h2> Message Sidebar </h2>
             </Sidebar>
             <Box component="main">
-                <ChatContainer />
+                <Chat />
             </Box>
         </Box>
     );

@@ -56,6 +56,18 @@ class EventAPI {
         const res = await axios.get(`/event/${id}/profilePictures`);
         return res;
     }
+
+    static async addChat(eventId, chatId) {
+        setHeader();
+        const res = await axios.post(`/event/${eventId}/addChat`, { chatId });
+        return res;
+    }
+
+    static async getAllChats(eventId) {
+        setHeader();
+        const res = await axios.get(`/event/${eventId}/getAllChats`);
+        return res;
+    }
 }
 
 export default EventAPI;

@@ -1,4 +1,5 @@
 import sharp from 'sharp';
+import Chat from '../models/chat.js';
 
 import Event from '../models/event.js';
 import User from '../models/user.js';
@@ -110,6 +111,32 @@ const getProfilePictures = async (req, res) => {
         .catch(() => res.status(500).send({ message: 'Error occured finding event' }));
 };
 
+const addChat = async (req, res) => {
+    const { eventId } = req.params;
+    const { chatId } = req.body;
+    try {
+        const event = await Event.findByIdAndUpdate(eventId, {
+            $addToSet: { chats: chatId },
+        }, {
+            new: true,
+        });
+        return res.send(event);
+    } catch (e) {
+        return res.status(500).send({ message: 'Error occured while adding chat to event' });
+    }
+};
+
+const getAllChats = async (req, res) => {
+    const { eventId } = req.params;
+    try {
+        const event = await Event.findById(eventId);
+        const chats = await Chat.find({_id: {$in: event.chats}});
+        return res.send(chats);
+    } catch (e) {
+        return res.status(500).send({ message: 'Error occured while getting chats in event' })
+    }
+}
+
 export default {
     getAllEvents,
     getAllEventsContainingName,
@@ -118,4 +145,6 @@ export default {
     joinEvent,
     leaveEvent,
     getProfilePictures,
+    addChat,
+    getAllChats,
 };
