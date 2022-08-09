@@ -42,6 +42,12 @@ class ChatAPI {
         const res = await axios.post(`/chats/${eventId}/join`, { email });
         return res;
     }
+
+    static async deleteChat(chatId) {
+        setHeader();
+        const res = await axios.delete(`/chats/${chatId}`);
+        return res;
+    }
 }
 
 export default ChatAPI;

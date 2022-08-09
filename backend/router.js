@@ -54,5 +54,6 @@ router.post('/api/chats/:chatId', verifyToken, chatController.createMessage);
 router.get('/api/chats/messages/:chatId', verifyToken, chatController.getAllMessages);
 router.get('/api/chats/senderInfo/:userId', verifyToken, chatController.getSenderInfo);
 router.post('/api/chats/:eventId/join', verifyToken, chatController.joinChats);
+router.delete('/api/chats/:chatId', verifyToken, chatController.deleteChat);
 
 export default router;

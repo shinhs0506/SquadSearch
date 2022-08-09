@@ -10,7 +10,7 @@ import './eventCard.css';
 
 function EventCard(props) {
     const {
-        _id, name, location, date, src,
+        _id, name, location, date, src, chats,
     } = props;
     const { email } = useSelector((state) => state.auth.user);
     const dispatch = useDispatch();
@@ -21,6 +21,9 @@ function EventCard(props) {
     }
 
     function handleDelete() {
+        chats.forEach((chatId) => {
+            dispatch(chatSliceActions.deleteChat({ chatId }));
+        });
         dispatch(eventSliceActions.deleteEventByID({ _id }));
     }
 
@@ -64,6 +67,7 @@ EventCard.propTypes = {
     name: PropTypes.string,
     date: PropTypes.string,
     location: PropTypes.string,
+    chats: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default EventCard;

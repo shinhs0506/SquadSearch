@@ -88,6 +88,16 @@ const joinChats = async (req, res) => {
     }
 };
 
+const deleteChat = async (req, res) => {
+    const { chatId } = req.params;
+    try {
+        await Chat.findByIdAndDelete(chatId);
+        return res.send(chatId);
+    } catch (e) {
+        return res.status(500).send({ message: 'Error orccured while deleting chat' });
+    }
+};
+
 export default {
     getAllChats,
     getAllChatsWithUser,
@@ -96,4 +106,5 @@ export default {
     getAllMessages,
     getSenderInfo,
     joinChats,
+    deleteChat,
 };

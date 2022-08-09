@@ -77,6 +77,19 @@ const joinChats = createAsyncThunk(
     },
 );
 
+const deleteChat = createAsyncThunk(
+    'chats/deleteChat',
+    async (input, thunkAPI) => {
+        try {
+            const { chatId } = input;
+            const res = await ChatAPI.deleteChat(chatId);
+            return res.data;
+        } catch (e) {
+            return thunkAPI.rejectWithValue(e);
+        }
+    },
+);
+
 const chatSlice = createSlice({
     name: 'chatSlice',
     initialState: {
@@ -108,6 +121,9 @@ const chatSlice = createSlice({
             state.chats = temp;
         });
         */
+        builder.addCase(deleteChat.fulfilled, (state, action) => {
+            state.chats = state.chats.filter((chat) => chat._id !== action.payload);
+        });
     },
 });
 
@@ -118,6 +134,7 @@ export const chatSliceActions = {
     createMessage,
     getAllMessages,
     joinChats,
+    deleteChat,
     ...chatSlice.actions,
 };
 export default chatSlice.reducer;
