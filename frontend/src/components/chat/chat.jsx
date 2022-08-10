@@ -5,6 +5,7 @@ import { chatSliceActions } from 'redux/slices/chatSlice';
 import Message from 'components/message/message';
 import socketIOClient from 'socket.io-client';
 import './chat.css';
+import { TextField, Button, Input } from '@mui/material';
 
 export default function Chat(props) {
     const {
@@ -15,7 +16,6 @@ export default function Chat(props) {
         ? 'http://localhost:4000'
         : 'https://cpsc455-squadsearch-backend.herokuapp.com/';
     const socket = socketIOClient(socketURL);
-    // const socket = socketIOClient('http://localhost:4000');
     socket.emit('join_room', chatId);
 
     const dispatch = useDispatch();
@@ -46,7 +46,6 @@ export default function Chat(props) {
             sender: user._id,
             text: message,
         }));
-        // dispatch(chatSliceActions.getAllMessages);
     };
 
     function submitMessage(e) {
@@ -73,16 +72,18 @@ export default function Chat(props) {
                                 </div>
                                 <div>
                                     <form onSubmit={submitMessage}>
-                                        <input
+                                        <TextField
                                           placeholder="message in chat"
                                           onChange={(event) => {
                                               setMessage(event.target.value);
                                           }}
                                         />
-                                        <input
+                                        <Button
                                           type="submit"
                                           value="Send"
-                                        />
+                                        >
+                                            Send
+                                        </Button>
                                     </form>
                                 </div>
                             </>
