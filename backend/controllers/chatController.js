@@ -39,7 +39,7 @@ const createPrivateChat = async (req, res) => {
         const chat = await Chat.create({
             name,
             members,
-            private: true
+            private: true,
         });
         return res.send(chat);
     } catch (e) {

@@ -1,4 +1,4 @@
-import User from "../models/user.js";
+import User from '../models/user.js';
 
 const getProfile = async (req, res) => {
     const { userId } = req.params;
@@ -10,6 +10,6 @@ const getProfile = async (req, res) => {
     }
 };
 
-export default{
+export default {
     getProfile,
 };
