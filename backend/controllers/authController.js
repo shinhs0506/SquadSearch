@@ -24,7 +24,7 @@ const signupUser = async (req, res) => {
             email,
             password: hashedPassword,
             profilePicture: imageBuffer,
-            bio: 'random bio',
+            bio: '',
         });
         return res.send(user);
     }
@@ -42,7 +42,7 @@ const loginUser = async (req, res) => {
                 _id: user._id,
                 name: user.name,
             };
-            const token = jwt.sign(payload, 'secretKey', { expiresIn: '20d' });
+            const token = jwt.sign(payload, 'secretKey', { expiresIn: '1d' });
             return res.send({
                 user: user.toJSON(),
                 token,
