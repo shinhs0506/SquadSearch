@@ -93,7 +93,7 @@ function MapWrapper({ google }) {
                         { selectedPlace.date }
                         {' '}
                     </p>
-                    <img src={selectedPlace.photo} alt="location" />
+                    { selectedPlace.photo && <img src={selectedPlace.photo} alt="location" /> }
                 </div>
             </InfoWindow>
             )}
