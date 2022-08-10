@@ -31,9 +31,6 @@ function Navbar() {
                             </Link>
                         </Typography>
                         <Typography>
-                            <Link to="/create-event" style={{ textDecoration: 'none' }}> Create Event </Link>
-                        </Typography>
-                        <Typography>
                             <Link to="/edit-profile" style={{ textDecoration: 'none' }}> Edit Profile </Link>
                         </Typography>
                         <Button color="inherit" onClick={handleLogout}> Log out </Button>

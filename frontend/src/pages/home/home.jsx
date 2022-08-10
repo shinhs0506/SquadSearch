@@ -2,8 +2,18 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
-    Box, Typography, Divider, List, ListItem, ListItemButton, Grid, Container, ListItemText,
+    Box,
+    Typography,
+    Divider,
+    List,
+    ListItem,
+    ListItemButton,
+    ListItemText,
+    IconButton,
+    Grid,
+    Container,
 } from '@mui/material';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 import Sidebar from 'components/sidebars/sidebar';
 import Searchbar from 'components/searchbar/searchbar';
@@ -56,23 +66,25 @@ function Home() {
                 <h1>Home</h1>
                 <div className="switch">
                     <h6>Switch To Map View</h6>
-                    <ToggleSlider onToggle={(state) => setActive(state)} />
                 </div>
-
-                <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-                    <Grid container direction="column" align="center">
-                        <Box>
-                            <Searchbar />
-                        </Box>
-                        {active ? (
-                            <div id="map">
-                                <MapWrapper />
-                            </div>
-                        ) : (
-                            <EventCardContainer />
-                        )}
-                    </Grid>
-                </Container>
+                <ToggleSlider onToggle={(state) => setActive(state)} />
+                {active ? (
+                    <div id="map">
+                        <MapWrapper />
+                    </div>
+                ) : (
+                    <div>
+                        <Searchbar id="searchbar" />
+                        <IconButton color="primary">
+                            <Link
+                              to="/create-event"
+                            >
+                                <AddCircleOutlineIcon fontSize="large" />
+                            </Link>
+                        </IconButton>
+                        <EventCardContainer />
+                    </div>
+                )}
             </Box>
         </Box>
     );

@@ -51,7 +51,7 @@ function MapWrapper({ google }) {
         <Map
           google={google}
           style={{
-              width: '80%', height: '100%', position: 'relative', margin: 'auto',
+              width: '100%', height: '100%', position: 'relative', margin: 'auto',
           }}
           zoom={14}
           initialCenter={{ lat: 49.2827, lng: -123.1207 }}
