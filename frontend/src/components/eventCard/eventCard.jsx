@@ -33,7 +33,7 @@ function EventCard(props) {
                 <div className="imgBx">
                     { src
                         ? <img src={src} alt="event" />
-                        : <img src="https://i.scdn.co/image/ab6761610000e5ebcdce7620dc940db079bf4952" alt="event" />}
+                        : <img src="https://images.pexels.com/photos/3052360/pexels-photo-3052360.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="event" />}
                 </div>
                 <div className="contentBx">
                     <h2 className="name">{name}</h2>
