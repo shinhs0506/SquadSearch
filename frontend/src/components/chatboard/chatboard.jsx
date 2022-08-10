@@ -112,7 +112,6 @@ export default function chatboard() {
 
             </Sidebar>
             <Box component="main">
-                <h1>This is where the chatboard will be</h1>
                 {
                     currentChat
                         ? (
