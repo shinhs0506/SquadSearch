@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
-    Box, Button, List, ListItem, ListItemText, Divider, Typography,
+    Box, Button, List, ListItem, ListItemText, Divider, Typography, ImageListItem,
 } from '@mui/material';
 
 import Sidebar from 'components/sidebars/sidebar';
@@ -21,6 +21,8 @@ export default function chatboard() {
         _id, name, location, date, joinedUsers,
     } = useSelector((state) => state.event.events.find((e) => e._id === data.state._id));
 
+    const detailedProfile = useSelector((state) => state.user.detailedProfile);
+    const user = useSelector((state) => state.auth.user);
     const [profilePictures, setProfilePictures] = useState([]);
     const [chats, setChats] = useState([]);
     const [currentChat, setCurrentChat] = useState();
@@ -55,6 +57,12 @@ export default function chatboard() {
             });
         });
         setChannelName('');
+    }
+
+    async function startPrivateChat() {
+        const userId = user._id;
+        const addId = detailedProfile._id;
+        await ChatAPI.createChat(userId.concat(addId), [user._id, detailedProfile._id]);
     }
 
     return (
@@ -112,6 +120,31 @@ export default function chatboard() {
                             />
                         )
                         : <p>Please select a channel</p>
+                }
+            </Box>
+            <Box>
+                {
+                    detailedProfile.name
+                        ? (
+                            <List>
+                                <ListItem>
+                                    <ListItemText primary={name} />
+                                </ListItem>
+                                <ListItem>
+                                    <ImageListItem key={detailedProfile?.profilePicture}>
+                                        <img src={detailedProfile?.profilePicture} alt="User pic" />
+                                    </ImageListItem>
+                                </ListItem>
+                                <ListItem>
+                                    <ListItemText primary={detailedProfile?.name} />
+                                </ListItem>
+                                <ListItem>
+                                    <ListItemText primary={detailedProfile?.bio} />
+                                </ListItem>
+                                <button type="button" onClick={startPrivateChat}>Add to Contacts</button>
+                            </List>
+                        )
+                        : <div />
                 }
             </Box>
         </Box>

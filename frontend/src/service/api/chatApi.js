@@ -7,15 +7,21 @@ class ChatAPI {
         return res;
     }
 
-    static async getAllChatsWithUser(chatId) {
+    static async getAllPrivateChats(userId) {
         setHeader();
-        const res = await axios.get(`/chats/${chatId}`);
+        const res = await axios.get(`/chats/${userId}`);
         return res;
     }
 
     static async createChat(name, members) {
         setHeader();
         const res = await axios.post('/chats', { name, members });
+        return res;
+    }
+
+    static async createPrivateChat(name, members) {
+        setHeader();
+        const res = await axios.post('/chats/privateChat', { name, members });
         return res;
     }
 

@@ -26,6 +26,11 @@ function Navbar() {
                             <Link to="/"> Home </Link>
                         </Typography>
                         <Typography>
+                            <Link to="/messenger">
+                                <img src="https://i.pinimg.com/originals/e7/31/5f/e7315f2424c3248b0fe1f3cedf2802df.jpg" alt="messages" width="30px" />
+                            </Link>
+                        </Typography>
+                        <Typography>
                             <Link to="/create-event"> Create Event </Link>
                         </Typography>
                         <Typography>
