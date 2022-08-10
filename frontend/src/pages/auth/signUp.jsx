@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import SignUpComp from 'components/newProfileForm/SignUp';
 import { authSliceActions } from 'redux/slices/authSlice';
-import NewProfileForm from 'components/newProfileForm/newProfileForm';
 
 function SignUp() {
     const isSignningUp = useSelector((state) => state.auth.isSignningUp);

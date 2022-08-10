@@ -6,9 +6,6 @@ import {
 import Geocode from 'react-geocode';
 import PropTypes from 'prop-types';
 
-console.log('api key is : ', process.env.REACT_APP_GOOGLE_MAP_API_KEY);
-console.log('api key is : ', process.env);
-
 function MapWrapper({ google }) {
     const events = useSelector((state) => state.event.events);
     const [coords, setCoords] = useState([]);

@@ -71,7 +71,7 @@ function Navbar() {
 
                         <Button color="inherit" onClick={handleLogout}>
                             {' '}
-                            Log out
+                            Logout
                             {' '}
                         </Button>
                     </Toolbar>
