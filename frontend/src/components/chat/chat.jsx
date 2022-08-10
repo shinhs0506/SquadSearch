@@ -10,24 +10,24 @@ export default function Chat(props) {
     const {
         chatId, name,
     } = props;
+
+    const socket = socketIOClient('https://cpsc455-squadsearch-frontend.herokuapp.com');
+    // const socket = socketIOClient('http://localhost:4000');
+    socket.emit('join_room', chatId);
+
     const dispatch = useDispatch();
 
     const user = useSelector((state) => state.auth.user);
     const chats = useSelector((state) => state.chat.chats);
 
     const currentChat = chats.find((chat) => (chat._id === chatId));
-
     const [msgCount, setMsgCount] = useState(0);
+    const [message, setMessage] = useState('');
 
     useEffect(() => {
         dispatch(chatSliceActions.getAllChats());
         dispatch(chatSliceActions.getAllMessages(chatId));
     }, [chatId, msgCount]);
-
-    const [message, setMessage] = useState('');
-
-    const socket = socketIOClient('http://localhost:4000');
-    socket.emit('join_room', chatId);
 
     useEffect(() => {
         socket.on('receive_message', (data) => {
@@ -51,7 +51,6 @@ export default function Chat(props) {
         e.target.reset();
         sendMessage();
     }
-
     return (
         <div className="chatContainer">
             {
