@@ -103,7 +103,8 @@ function MapWrapper({ google }) {
 
 MapWrapper.propTypes = {
     google: PropTypes.shape({
-        map: PropTypes.objectOf(PropTypes.object()),
+        /* eslint react/forbid-prop-types: 0 */
+        map: PropTypes.objectOf(PropTypes.object),
     }),
 };
 
