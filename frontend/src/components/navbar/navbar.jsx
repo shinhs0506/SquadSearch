@@ -45,6 +45,18 @@ function Navbar() {
                             <Box>
                                 <Typography>
                                     <Link
+                                      to="/messenger"
+                                      style={{ textDecoration: 'none' }}
+                                    >
+                                        {' '}
+                                        Messenger
+                                        {' '}
+                                    </Link>
+                                </Typography>
+                            </Box>
+                            <Box>
+                                <Typography>
+                                    <Link
                                       to="/create-event"
                                       style={{ textDecoration: 'none' }}
                                     >
