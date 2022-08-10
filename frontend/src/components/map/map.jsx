@@ -10,10 +10,8 @@ function MapWrapper({ google }) {
     const [ coords, setCoords] = useState([])
 
     const [ showInfoWindow, setShowInfoWindow] = useState(false)
-    const [ activeMarker, setActiveMarker] = useState(null)
-    const [ selectedPlace, setSelectedPlace] = useState(null)
-
-    const dispatch = useDispatch();
+    const [ activeMarker, setActiveMarker] = useState({})
+    const [ selectedPlace, setSelectedPlace] = useState({})
 
     Geocode.setApiKey(process.env.REACT_APP_GOOGLE_MAP_API_KEY)
     Geocode.setRegion('ca');
@@ -32,7 +30,7 @@ function MapWrapper({ google }) {
                 }
             })
         })
-        Promise.all(arr).then((res) => {
+        Promise.all(arr.map(a => a.catch(error => null))).then((res) => {
             setCoords(res);
         })
     }
@@ -55,13 +53,14 @@ function MapWrapper({ google }) {
     return coords && (
         <Map 
         google={google} 
+        style={{width: '80%', height:'100%', position: 'relative', margin: 'auto'}}
         zoom={14}
         initialCenter={{lat: 49.2827, lng: -123.1207}}
         onClick={handleMapClick}
         >
             { coords.map((coord) => {
                 return (
-                <Marker 
+                coord && <Marker 
                     key={coord._id}
                     position={coord.coord}
                     onClick={handleMarkerClick}

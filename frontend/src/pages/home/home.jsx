@@ -10,6 +10,8 @@ import Searchbar from 'components/searchbar/searchbar';
 import EventCardContainer from 'components/eventCard/eventCardContainer';
 import MapWrapper from 'components/map/map';
 
+import './home.css'
+
 function Home() {
     const user = useSelector((state) => state.auth.user);
     const myEvents = useSelector(
@@ -58,7 +60,9 @@ function Home() {
                 <h1>Home</h1>
                 <Searchbar />
                 <EventCardContainer />
-                <MapWrapper />
+                <div id="map">
+                    <MapWrapper />
+                </div>
             </Box>
         </Box>
     );
