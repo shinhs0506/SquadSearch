@@ -20,7 +20,7 @@ Our app SquadSearch lets you find others who are interested in or attending the 
 ## Tech used from modules 1-5
 - Module 1
   - Styling done with css and Material UI
-    - Matrial UI provides styling for frequently used components in React applications out-of-the-box. This allows rapid app development as it is also less error-prone to human errors. We use Material UI to style most of our pages and forms
+    - Matrial UI provides styling for frequently used components in React applications out-of-the-box. This allows rapid app development. We use Material UI to style most of our pages and forms
   - code examples [here](https://github.com/shinhs0506/SquadSearch/blob/main/frontend/src/components/eventCard/eventCard.css) and [here](https://github.com/shinhs0506/SquadSearch/blob/main/frontend/src/components/loginForm/SignInSide.jsx#L41)
 - Module 2
   - Frontend app initiated with create-react-app
@@ -51,6 +51,10 @@ Our app SquadSearch lets you find others who are interested in or attending the 
   - To further develop the project, good code documentation would help developers to easily extend the functionality of the current system and possibly attract open-source contributions
 - User Experience
   - We can gather feedbacks from first-time users to improve on the user experience.
+- Authentication
+  - Make the authentication system more robust by pairing the auth tokens with refresh tokens for better user experience
+  Testing
+  - End-to-end testing with Selenium would make our project more robust
 
 
 ## Contributions
