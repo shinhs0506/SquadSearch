@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import './message.css';
 import PropTypes from 'prop-types';
 import ChatAPI from 'service/api/chatApi';
+import { userSliceActions } from 'redux/slices/userSlice';
 
 export default function Message(props) {
     const {
@@ -10,17 +11,25 @@ export default function Message(props) {
     } = props;
 
     const [user, setUser] = useState();
-
+    const dispatch = useDispatch();
     useEffect(() => {
         ChatAPI.getSenderInfo(sender).then((res) => {
             setUser(res.data);
         }).catch((err) => {
         });
     }, [sender]);
+
+    const profileDisplay = () => {
+        const userId = user._id;
+        dispatch(userSliceActions.getProfile(userId));
+    };
+
     return (
         <div className="message">
             <div>
-                <img src={user?.profilePicture} alt="User pic" className="messagePic" />
+                <button type="button" className="messagePic" id="profileButton" onClick={profileDisplay}>
+                    <img src={user?.profilePicture} alt="User pic" className="messagePic" />
+                </button>
             </div>
             <div>
                 <div className="messageReceipt">
