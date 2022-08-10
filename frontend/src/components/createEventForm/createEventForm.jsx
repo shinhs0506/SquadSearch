@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { eventSliceActions } from 'redux/slices/eventSlice';
-
+import { chatSliceActions } from 'redux/slices/chatSlice';
 // TODO: Maybe look into redux form
 
 export default function CreateEventForm() {
@@ -16,7 +16,17 @@ export default function CreateEventForm() {
 
         const body = new FormData(e.target);
 
-        dispatch(eventSliceActions.createEvent({ body }));
+        dispatch(eventSliceActions.createEvent({ body }))
+            .then((eventRes) => {
+                dispatch(chatSliceActions.createChat({ name: 'general', members: [] }))
+                    .then((chatRes) => {
+                        dispatch(
+                            eventSliceActions.addChat(
+                                { eventId: eventRes.payload._id, chatId: chatRes.payload._id },
+                            ),
+                        );
+                    });
+            });
 
         setName('');
         setDate('');

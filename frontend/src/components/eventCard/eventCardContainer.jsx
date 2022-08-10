@@ -23,6 +23,7 @@ export default function EventCardContainer() {
                   date={event.date}
                   location={event.location}
                   src={event.photo}
+                  chats={event.chats}
                 />
             ))}
         </div>

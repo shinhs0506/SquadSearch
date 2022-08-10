@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { eventSliceActions } from 'redux/slices/eventSlice';
+import { chatSliceActions } from 'redux/slices/chatSlice';
 import { Link } from 'react-router-dom';
 
 import './eventCard.css';
@@ -9,16 +10,20 @@ import './eventCard.css';
 
 function EventCard(props) {
     const {
-        _id, name, location, date, src,
+        _id, name, location, date, src, chats,
     } = props;
     const { email } = useSelector((state) => state.auth.user);
     const dispatch = useDispatch();
 
     function handleJoin() {
         dispatch(eventSliceActions.joinEvent({ _id, email }));
+        dispatch(chatSliceActions.joinChats({ _id, email }));
     }
 
     function handleDelete() {
+        chats.forEach((chatId) => {
+            dispatch(chatSliceActions.deleteChat({ chatId }));
+        });
         dispatch(eventSliceActions.deleteEventByID({ _id }));
     }
 
@@ -62,6 +67,7 @@ EventCard.propTypes = {
     name: PropTypes.string,
     date: PropTypes.string,
     location: PropTypes.string,
+    chats: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default EventCard;
