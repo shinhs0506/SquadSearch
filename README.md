@@ -66,3 +66,8 @@ Our app SquadSearch lets you find others who are interested in or attending the 
  - Anthony
    - Private Messages / Chatboards: Implemented private messaging and channel-based group messaging
    - Redux / API: Built redux and backend APIs for Chat
+ 
+ - Isaac
+   - Styled Frontend: Implemented the Styling of the app using Material UI
+   - Basic Functionality: Adding/deleting of events and users
+   - Google Maps: Showing map and locations of events
