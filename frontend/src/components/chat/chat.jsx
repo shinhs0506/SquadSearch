@@ -11,7 +11,10 @@ export default function Chat(props) {
         chatId, name,
     } = props;
 
-    const socket = socketIOClient('https://cpsc455-squadsearch-frontend.herokuapp.com');
+    const socketURL = (process.env.NODE_ENV || 'development') === 'development'
+        ? 'http://localhost:4000'
+        : 'https://cpsc455-squadsearch-frontend.herokuapp.com';
+    const socket = socketIOClient(socketURL);
     // const socket = socketIOClient('http://localhost:4000');
     socket.emit('join_room', chatId);
 
