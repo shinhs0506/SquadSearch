@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 import {
     Box, Button, List, ListItem, ListItemText, Divider, Typography, ImageListItem,
 } from '@mui/material';
-
 import Sidebar from 'components/sidebars/sidebar';
 import { eventSliceActions } from 'redux/slices/eventSlice';
 import EventAPI from 'service/api/eventApi';
@@ -141,7 +140,9 @@ export default function chatboard() {
                                 <ListItem>
                                     <ListItemText primary={detailedProfile?.bio} />
                                 </ListItem>
-                                <button type="button" onClick={startPrivateChat}>Add to Contacts</button>
+                                <Link to="/messenger">
+                                    <button type="button" onClick={startPrivateChat}>Start new chat</button>
+                                </Link>
                             </List>
                         )
                         : <div />

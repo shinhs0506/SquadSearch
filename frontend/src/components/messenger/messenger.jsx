@@ -16,22 +16,6 @@ export default function Messenger() {
         });
     }, []);
 
-    function getRecipientUserId(name) {
-        const index = name.indexOf(user._id);
-        if (index === 0) {
-            const userId = name.substr(24);
-            return (userId);
-        }
-        const userId = name.substr(0, index);
-        return (userId);
-    }
-
-    async function test(userId) {
-        const a = await ChatAPI.getSenderInfo(userId);
-        const { name } = a.data;
-        return name;
-    }
-
     return (
         <Box sx={{ display: 'flex' }}>
             <Sidebar>
@@ -45,7 +29,7 @@ export default function Messenger() {
                               setCurrentChat(chat);
                           }}
                         >
-                            {getRecipientUserId(chat.name)}
+                            {`Chat ${chats.indexOf(chat) + 1}`}
                         </button>
                     ))}
                 </div>
