@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
-    Box, Typography, Divider, List, ListItem, ListItemButton,
+    Box, Typography, Divider, List, ListItem, ListItemButton, ListItemText,
 } from '@mui/material';
 
 import Sidebar from 'components/sidebars/sidebar';
@@ -23,7 +23,6 @@ function Home() {
     return (
         <Box sx={{ display: 'flex' }}>
             <Sidebar>
-                <h2>Home Sidebar</h2>
                 <Typography>
                     Hello
                     {' '}
@@ -46,8 +45,9 @@ function Home() {
                                     <Link
                                       to="/chatboard"
                                       state={{ _id }}
+                                      style={{ textDecoration: 'none' }}
                                     >
-                                        { name }
+                                        <ListItemText primary={name} />
                                     </Link>
                                 </ListItemButton>
                             </ListItem>

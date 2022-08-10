@@ -23,7 +23,7 @@ function Navbar() {
                     <Toolbar>
                         <Typography>SquardSearch</Typography>
                         <Typography>
-                            <Link to="/"> Home </Link>
+                            <Link to="/" style={{ textDecoration: 'none' }}> Home </Link>
                         </Typography>
                         <Typography>
                             <Link to="/messenger">
@@ -31,10 +31,10 @@ function Navbar() {
                             </Link>
                         </Typography>
                         <Typography>
-                            <Link to="/create-event"> Create Event </Link>
+                            <Link to="/create-event" style={{ textDecoration: 'none' }}> Create Event </Link>
                         </Typography>
                         <Typography>
-                            <Link to="/edit-profile"> Edit Profile </Link>
+                            <Link to="/edit-profile" style={{ textDecoration: 'none' }}> Edit Profile </Link>
                         </Typography>
                         <Button color="inherit" onClick={handleLogout}> Log out </Button>
                     </Toolbar>
