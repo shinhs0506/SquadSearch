@@ -3,7 +3,6 @@ import {
     Routes, Route, Outlet, Navigate, useLocation,
 } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { Toolbar } from '@mui/material';
 
 import Banner from 'components/banner/banner';
 import Home from 'pages/home/home';
@@ -15,8 +14,6 @@ import CreateEvent from 'pages/createEvent/createEvent';
 import Chatboard from 'components/chatboard/chatboard';
 import Messenger from 'components/messenger/messenger';
 import EditProfile from 'pages/editProfile/editProfile';
-
-import Dashboard from 'pages/home/dashboard';
 
 function Guard() {
     const location = useLocation();
