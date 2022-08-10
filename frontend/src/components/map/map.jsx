@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Map, Marker, GoogleApiWrapper, InfoWindow } from "google-maps-react";
 import Geocode from "react-geocode";
-
-console.log(process.env.REACT_APP_GOOGLE_MAP_API_KEY)
+import PropTypes from 'prop-types';
 
 function MapWrapper({ google }) {
     const events = useSelector((state) => state.event.events);
@@ -82,12 +81,18 @@ function MapWrapper({ google }) {
                         <p> { selectedPlace.name } </p>
                         <p> { selectedPlace.location } </p>  
                         <p> { selectedPlace.date } </p>  
-                        <img src={ selectedPlace.photo } />
+                        <img src={ selectedPlace.photo } alt='location' />
                     </div>
             </InfoWindow>
             } 
         </Map>
     )
+}
+
+MapWrapper.propTypes = {
+    google: PropTypes.shape({
+        map: PropTypes.objectOf(PropTypes.object())
+    })
 }
 
 export default GoogleApiWrapper({
