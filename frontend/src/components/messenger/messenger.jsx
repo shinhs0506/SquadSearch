@@ -35,7 +35,6 @@ export default function Messenger() {
                 </div>
             </Sidebar>
             <Box component="main">
-                <h1>This is where the chatboard will be</h1>
                 {
                     currentChat
                         ? (
