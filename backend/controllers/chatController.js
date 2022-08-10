@@ -11,9 +11,9 @@ const getAllChats = async (req, res) => {
     }
 };
 
-const getAllChatsWithUser = async (req, res) => {
+const getAllPrivateChats = async (req, res) => {
     try {
-        const chats = await Chat.find({ members: { $in: [req.params.userId] } });
+        const chats = await Chat.find({ name: { $regex: req.params.userId } });
         return res.send(chats);
     } catch (e) {
         return res.status(500).send({ message: 'Error occured while filtering chats' });
@@ -30,6 +30,20 @@ const createChat = async (req, res) => {
         return res.send(chat);
     } catch (e) {
         return res.status(500).send({ message: 'Error occured while creating a chat, please try again' });
+    }
+};
+
+const createPrivateChat = async (req, res) => {
+    const { name, members } = req.body;
+    try {
+        const chat = await Chat.create({
+            name,
+            members,
+            private: true,
+        });
+        return res.send(chat);
+    } catch (e) {
+        return res.status(500).send({ message: 'Error occured while creating a private chat' });
     }
 };
 
@@ -100,8 +114,9 @@ const deleteChat = async (req, res) => {
 
 export default {
     getAllChats,
-    getAllChatsWithUser,
+    getAllPrivateChats,
     createChat,
+    createPrivateChat,
     createMessage,
     getAllMessages,
     getSenderInfo,
