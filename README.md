@@ -10,7 +10,7 @@ Our app SquadSearch lets you find others who are interested in or attending the 
 - 3-7 standards
   - [x] Multiple channels
   - [x] Join events and different chat channels
-  - [ ] Private messages
+  - [X] Private messages
   - [x] Login/Authentication
 - 2-3 stretch
   - [ ] Grouping algorithm
@@ -62,3 +62,7 @@ Our app SquadSearch lets you find others who are interested in or attending the 
    - Login / Auth: Implemented token-based authentication system
    - Google Maps: Display a map to show physical location of events using Google Maps API
    - Redux / API: Built redux and backend APIs for Event and User Profile data 
+   
+ - Anthony
+   - Private Messages / Chatboards: Implemented private messaging and channel-based group messaging
+   - Redux / API: Built redux and backend APIs for Chat
