@@ -14,7 +14,7 @@ function MapWrapper({ google }) {
     const [activeMarker, setActiveMarker] = useState({});
     const [selectedPlace, setSelectedPlace] = useState({});
 
-    Geocode.setApiKey('AIzaSyDTyAjDVBwxWqhsb3DHVE7vlPw0JIp1Ees');
+    Geocode.setApiKey(process.env.REACT_APP_GOOGLE_MAP_API_KEY);
     Geocode.setRegion('ca');
     Geocode.setLocationType('ROOFTOP');
 
@@ -108,5 +108,5 @@ MapWrapper.propTypes = {
 };
 
 export default GoogleApiWrapper({
-    apiKey: 'AIzaSyDTyAjDVBwxWqhsb3DHVE7vlPw0JIp1Ees',
+    apiKey: process.env.REACT_APP_GOOGLE_MAP_API_KEY,
 })(MapWrapper);
