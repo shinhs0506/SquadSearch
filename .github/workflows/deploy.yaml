@@ -26,13 +26,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: |
-          cd frontend
-          npm install --force
-          cd ..
       - uses: akhileshns/heroku-deploy@master
         with:
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
           heroku_app_name: "cpsc455-squadsearch-frontend"
           heroku_email: ${{ secrets.HEROKU_EMAIL }}
+          REACT_APP_GOOGLE_MAP_API_KEY: ${{ secrets.REACT_APP_GOOGLE_MAP_API_KEY }} 
           appdir: "frontend"
