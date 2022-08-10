@@ -97,6 +97,7 @@ function MapWrapper({ google }) {
                         {' '}
                     </p>
                     { selectedPlace.photo && <img src={selectedPlace.photo} alt="location" /> }
+
                 </div>
             </InfoWindow>
             )}
@@ -112,5 +113,5 @@ MapWrapper.propTypes = {
 };
 
 export default GoogleApiWrapper({
-    apiKey: (process.env.REACT_APP_GOOGLE_MAP_API_KEY),
+    apiKey: process.env.REACT_APP_GOOGLE_MAP_API_KEY,
 })(MapWrapper);
