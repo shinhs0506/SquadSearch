@@ -13,6 +13,7 @@ import Logout from 'pages/auth/logout';
 import SignUp from 'pages/auth/signUp';
 import CreateEvent from 'pages/createEvent/createEvent';
 import Chatboard from 'components/chatboard/chatboard';
+import Messenger from 'components/messenger/messenger';
 import EditProfile from 'pages/editProfile/editProfile';
 
 import Dashboard from 'pages/home/dashboard';
@@ -41,6 +42,7 @@ function AppRoutes() {
                     <Route path="/chat" element={<Chat />} />
                     <Route path="/create-event" element={<CreateEvent />} />
                     <Route path="/chatboard" element={<Chatboard />} />
+                    <Route path="/messenger" element={<Messenger />} />
                     <Route path="/edit-profile" element={<EditProfile />} />
                     <Route path="/logout" element={<Logout />} />
                 </Route>

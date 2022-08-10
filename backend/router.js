@@ -5,6 +5,7 @@ import jwtDecode from 'jwt-decode';
 import eventController from './controllers/eventController.js';
 import authController from './controllers/authController.js';
 import chatController from './controllers/chatController.js';
+import userController from './controllers/userController.js';
 
 const upload = multer({});
 
@@ -48,12 +49,16 @@ router.get('/api/event/:eventId/getAllChats', verifyToken, eventController.getAl
 
 // chat endpoints
 router.get('/api/chats', verifyToken, chatController.getAllChats);
-router.get('/api/chats/:userId', verifyToken, chatController.getAllChatsWithUser);
+router.get('/api/chats/:userId', verifyToken, chatController.getAllPrivateChats);
 router.post('/api/chats', verifyToken, chatController.createChat);
+router.post('/api/chats/privateChat', verifyToken, chatController.createPrivateChat);
 router.post('/api/chats/:chatId', verifyToken, chatController.createMessage);
 router.get('/api/chats/messages/:chatId', verifyToken, chatController.getAllMessages);
 router.get('/api/chats/senderInfo/:userId', verifyToken, chatController.getSenderInfo);
 router.post('/api/chats/:eventId/join', verifyToken, chatController.joinChats);
 router.delete('/api/chats/:chatId', verifyToken, chatController.deleteChat);
+
+// user endpoints
+router.get('/api/users/:userId/getProfile', verifyToken, userController.getProfile);
 
 export default router;

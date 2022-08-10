@@ -11,7 +11,6 @@ import './index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    // <h1>Hi</h1>
     <React.StrictMode>
         <BrowserRouter>
             <Provider store={store}>

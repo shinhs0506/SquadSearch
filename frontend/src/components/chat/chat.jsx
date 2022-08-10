@@ -15,7 +15,6 @@ export default function Chat(props) {
         ? 'http://localhost:4000'
         : 'https://cpsc455-squadsearch-backend.herokuapp.com/';
     const socket = socketIOClient(socketURL);
-    // const socket = socketIOClient('http://localhost:4000');
     socket.emit('join_room', chatId);
 
     const dispatch = useDispatch();
@@ -46,7 +45,6 @@ export default function Chat(props) {
             sender: user._id,
             text: message,
         }));
-        // dispatch(chatSliceActions.getAllMessages);
     };
 
     function submitMessage(e) {
