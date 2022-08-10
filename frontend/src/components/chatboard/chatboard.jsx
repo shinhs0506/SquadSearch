@@ -83,15 +83,18 @@ export default function chatboard() {
                 <Typography>Channels</Typography>
                 <div>
                     {chats.map((chat) => (
-                        <button
-                          key={chat._id}
-                          type="button"
-                          onClick={() => {
-                              setCurrentChat(chat);
-                          }}
-                        >
-                            {chat.name}
-                        </button>
+                        <div>
+                            <Button
+                              key={chat._id}
+                              type="button"
+                              variant="text"
+                              onClick={() => {
+                                  setCurrentChat(chat);
+                              }}
+                            >
+                                {chat.name}
+                            </Button>
+                        </div>
                     ))}
                 </div>
                 <form onSubmit={addChannel}>
