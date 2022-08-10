@@ -33,4 +33,5 @@ jobs:
           heroku_email: ${{ secrets.HEROKU_EMAIL }}
           appdir: "frontend"
         env:
+          KEY: "random key"
           REACT_APP_GOOGLE_MAP_API_KEY: ${{ secrets.REACT_APP_GOOGLE_MAP_API_KEY }} 
