@@ -2,8 +2,9 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
-    Box, Typography, Divider, List, ListItem, ListItemButton, ListItemText,
+    Box, Typography, Divider, List, ListItem, ListItemButton, ListItemText, IconButton, 
 } from '@mui/material';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 import Sidebar from 'components/sidebars/sidebar';
 import Searchbar from 'components/searchbar/searchbar';
@@ -58,7 +59,14 @@ function Home() {
             </Sidebar>
             <Box component="main">
                 <h1>Home</h1>
-                <Searchbar />
+                <Searchbar id="searchbar"/>
+                <IconButton color="primary">
+                    <Link
+                      to="/create-event"
+                    >
+                        <AddCircleOutlineIcon fontSize="large" />
+                    </Link>
+                </IconButton>
                 <EventCardContainer />
                 <div id="map">
                     <MapWrapper />
